@@ -7,112 +7,135 @@
 
 <style>
     body {
-        font-family: Arial, sans-serif;
         margin: 0;
-        padding: 0;
+        font-family: Arial, sans-serif;
         background: #fafafa;
-        text-align: center;
+        color: #222;
     }
 
     header {
         background: #ffcc00;
-        padding: 20px;
-        font-size: 26px;
+        padding: 16px 20px;
+        text-align: center;
+        font-size: 24px;
         font-weight: bold;
+        color: #000;
     }
 
-    .menu-section {
+    .wrapper {
+        max-width: 900px;
+        margin: auto;
         padding: 20px;
     }
 
-    .item {
+    .product-card {
         background: white;
-        border-radius: 10px;
-        box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
-        margin: 15px auto;
-        max-width: 330px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 22px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .info {
         padding: 15px;
     }
 
-    .item img {
-        width: 100%;
-        border-radius: 10px;
-    }
-
-    .name {
-        font-size: 20px;
-        margin-top: 10px;
-        font-weight: bold;
+    .info h3 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 600;
     }
 
     .price {
-        font-size: 18px;
-        margin: 5px 0;
-        color: #444;
+        font-size: 20px;
+        margin-top: 5px;
+        font-weight: bold;
+        color: #e63946;
     }
 
     .order-btn {
         display: block;
-        margin-top: 10px;
         background: #25D366;
-        padding: 10px;
-        border-radius: 8px;
+        text-align: center;
         color: white;
-        text-decoration: none;
+        padding: 14px;
+        margin-top: 12px;
+        border-radius: 8px;
         font-size: 18px;
+        text-decoration: none;
         font-weight: bold;
     }
 
+    .order-btn:hover {
+        opacity: 0.85;
+    }
+
     footer {
-        margin-top: 40px;
-        padding: 20px;
-        background: #222;
-        color: white;
+        text-align: center;
+        padding: 25px;
         font-size: 14px;
+        color: #555;
     }
 </style>
 
 </head>
 <body>
 
-<header>🍟 French Fries Bar & Grill</header>
+<header>🍟 French Fries Bar & Grill — Tasbapauni</header>
 
-<div class="menu-section">
+<div class="wrapper">
 
-    <div class="item">
-        <img src="fries6.png" alt="6 French Fries Pack">
-        <div class="name">6 French Fries Pack</div>
-        <div class="price">C$240</div>
-        <a class="order-btn" href="https://wa.me/50585065976?text=I%20want%20the%206%20French%20Fries%20Pack">📦 Order on WhatsApp</a>
+    <!-- Product 1 -->
+    <div class="product-card">
+        <img src="fries6.jpg" alt="">
+        <div class="info">
+            <h3>6 French Fries Pack</h3>
+            <div class="price">C$240</div>
+            <a class="order-btn" href="https://wa.me/50585065976?text=Hola!%20Quiero%20ordenar%20el%206%20French%20Fries%20Pack.">📦 Order on WhatsApp</a>
+        </div>
     </div>
 
-    <div class="item">
-        <img src="combo8.png" alt="Chicken + Fries + Drink Combo">
-        <div class="name">Chicken + Fries + Drink Combo</div>
-        <div class="price">C$300</div>
-        <div class="desc">Crispy chicken + fries + soda</div>
-        <a class="order-btn" href="https://wa.me/50585065976?text=I%20want%20Chicken%20+%20Fries%20+%20Drink%20Combo">📦 Order on WhatsApp</a>
+    <!-- Product 2 -->
+    <div class="product-card">
+        <img src="combo8.png" alt="">
+        <div class="info">
+            <h3>Chicken + Fries + Drink Combo</h3>
+            <div class="price">C$300</div>
+            <a class="order-btn" href="https://wa.me/50585065976?text=Hola!%20Quiero%20ordenar%20el%20Combo%20de%20Pollo%20con%20Papas%20y%20Refresco.">📦 Order on WhatsApp</a>
+        </div>
     </div>
 
-    <div class="item">
-        <img src="grillmix.png" alt="French Fries Grill Mix">
-        <div class="name">French Fries Grill Mix</div>
-        <div class="price">C$550</div>
-        <a class="order-btn" href="https://wa.me/50585065976?text=I%20want%20the%20French%20Fries%20Grill%20Mix">📦 Order on WhatsApp</a>
+    <!-- Product 3 -->
+    <div class="product-card">
+        <img src="grillmix.png" alt="">
+        <div class="info">
+            <h3>French Fries Grill Mix</h3>
+            <div class="price">C$550</div>
+            <a class="order-btn" href="https://wa.me/50585065976?text=Hola!%20Quiero%20ordenar%20el%20French%20Fries%20Grill%20Mix.">📦 Order on WhatsApp</a>
+        </div>
     </div>
 
-    <div class="item">
-        <img src="combo10.png" alt="French Fries + Chicken Mix">
-        <div class="name">French Fries + Chicken Mix</div>
-        <div class="price">C$440</div>
-        <a class="order-btn" href="https://wa.me/50585065976?text=I%20want%20the%20French%20Fries%20+%20Chicken%20Mix">📦 Order on WhatsApp</a>
+    <!-- Product 4 -->
+    <div class="product-card">
+        <img src="combo10.png" alt="">
+        <div class="info">
+            <h3>French Fries + Chicken Mix</h3>
+            <div class="price">C$440</div>
+            <a class="order-btn" href="https://wa.me/50585065976?text=Hola!%20Quiero%20ordenar%20el%20French%20Fries%20+%20Chicken%20Mix.">📦 Order on WhatsApp</a>
+        </div>
     </div>
 
 </div>
 
 <footer>
-📍 Tasbapauni, Nicaragua | ⏰ Open 8 AM – 10 PM | 📞 +505 8506 5976 <br><br>
-All rights reserved. French Fries Bar & Grill.
+📍 Tasbapauni, Nicaragua • Open Everyday 8 AM – 10 PM
+<br>© 2025 French Fries Bar & Grill
 </footer>
 
 </body>
