@@ -3,65 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Product Guide Email</title>
-</head>
-<body style="margin:0; padding:0; background-color:#f6f6f6; font-family: Arial, sans-serif;">
+<title>French Fries Bar & Grill - Tasbapauni</title>
 
-<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f6f6f6; padding:20px 0;">
-  <tr>
-    <td align="center">
-      <!-- Container -->
-      <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff; border-radius:8px; padding:20px;">
-        <tr>
-          <td>
-            <!-- Heading -->
-            <h1 style="color:#333333; font-size:24px; margin:0 0 15px 0;">Hi {{first_name}},</h1>
-            
-            <!-- Intro Text -->
-            <p style="color:#555555; font-size:16px; line-height:1.5; margin:0 0 20px 0;">
-              I'm excited to share something that can help you stop guessing and start selling your digital product.
-            </p>
-            
-            <!-- CTA Button -->
-            <p>
-              <a href="https://github.com/YourUsername/DigitalProduct-Sales/blob/main/DigitalProduct_Guide.pdf?raw=true" 
-                 style="display:inline-block; padding:12px 24px; background-color:#ff6f00; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:bold;">
-                 Download Your Free Guide
-              </a>
-            </p>
-            
-            <!-- Features -->
-            <h2 style="color:#333333; font-size:20px; margin:20px 0 10px 0;">What you’ll get:</h2>
-            <ul style="padding-left:20px; margin:0 0 20px 0; color:#555555; font-size:16px; line-height:1.5;">
-              <li>Key validation tactics so you build something people actually pay for</li>
-              <li>A step-by-step launch timetable to go from idea to revenue</li>
-              <li>Proven strategies to turn one-time buyers into repeat customers</li>
-            </ul>
-            
-            <!-- Outro Text -->
-            <p style="color:#555555; font-size:16px; line-height:1.5; margin:0 0 20px 0;">
-              This guide is designed for creators who want results without the fluff. Grab it now and get the exact blueprint to start seeing traction.
-            </p>
-            
-            <p style="color:#555555; font-size:16px; line-height:1.5; margin:0 0 20px 0;">
-              To your success,<br>
-              <strong>[Your Name]</strong>
-            </p>
-            
-            <hr style="border:none; border-top:1px solid #dddddd; margin:20px 0;">
-            
-            <!-- Footer -->
-            <p style="font-size:12px; color:#888888; text-align:center; margin:0;">
-              If you have any questions, reply to this email. <br>
-              © 2025 [Your Brand Name]. All Rights Reserved.
-            </p>
-          </td>
-        </tr>
-      </table>
-      <!-- End Container -->
-    </td>
-  </tr>
-</table>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff7e6;
+}
+
+/* Smooth Page Fade */
+section {
+  display: none;
+  animation: fadeIn 0.5s ease forwards;
+}
+@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+section.active { display: block; }
+
+/* Navigation */
+nav {
+  background: #ffb100;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+
+/* Hero Image */
+.hero {
+  width: 100%;
+  height: 260px;
+  background: url("ChatGPT Image Aug 10, 2025, 07_45_18 AM.png") center/cover no-repeat;
+}
+
+/* Menu Grid */
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+.item {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  text-align: center;
+  padding-bottom: 10px;
+}
+.item img { width: 100%; height: 140px; object-fit: cover; }
+.item h3 { margin: 10px 0 5px; }
+.item p { margin: 0 0 10px; }
+
+.order-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  background: #ff9100;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #444;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a onclick="show('home')">Home</a>
+  <a onclick="show('menu')">Menu</a>
+  <a onclick="show('contact')">Contact</a>
+  <a onclick="show('policy')">Policies</a>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <div class="hero"></div>
+  <h2 style="text-align:center; padding:15px;">🍟 Welcome to French Fries Bar & Grill</h2>
+  <p style="text-align:center; padding:0 20px;">
+    Fresh. Local. Made with love in Tasbapauni.
+  </p>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <h2 style="text-align:center; padding:15px;">Our Menu</h2>
+  <div class="menu">
+
+    <div class="item">
+      <img src="french fries.png">
+      <h3>French Fries</h3>
+      <p>120 Córdobas</p>
+      <a class="order-btn" href="https://wa.me/50585065976?text=I%20want%20to%20order%20French%20Fries">Order</a>
+    </div>
+
+    <div class="item">
+      <img src="Combo8.png">
+      <h3>6 French Fries</h3>
+      <p>200 Córdobas</p>
+      <a class="order-btn" href="https://wa.me/50585065976?text=I%20want%20to%20order%206%20French%20Fries">Order</a>
+    </div>
+
+    <div class="item">
+      <img src="combo 10.png">
+      <h3>Chicken + Fries + Drink</h3>
+      <p>300 Córdobas</p>
+      <a class="order-btn" href="https://wa.me/50585065976?text=I%20want%20to%20order%20Chicken%20Fries%20and%20Drink">Order</a>
+    </div>
+
+    <div class="item">
+      <img src="image_Pippit_202507111556 (1).jpg">
+      <h3>French Fries Mix Grill</h3>
+      <p>500 Córdobas</p>
+      <a class="order-btn" href="https://wa.me/50585065976?text=I%20want%20to%20order%20Mix%20Grill">Order</a>
+    </div>
+
+    <div class="item">
+      <img src="french fries.png">
+      <h3>Fish & Chips (changed)</h3>
+      <p>400 Córdobas</p>
+      <a class="order-btn" href="https://wa.me/50585065976?text=I%20want%20to%20order%20French%20Fries%20Fish%20Set">Order</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 style="text-align:center;">Contact Us</h2>
+  <p style="text-align:center;">📍 Tasbapauni, Nicaragua</p>
+  <p style="text-align:center;">⏰ Open: 8 AM – 10 PM</p>
+  <p style="text-align:center;">📞 +505 8506 5976</p>
+  <p style="text-align:center;">
+    <a class="order-btn" href="https://wa.me/50585065976">Message on WhatsApp</a>
+  </p>
+</section>
+
+<!-- POLICY -->
+<section id="policy">
+  <h2 style="text-align:center;">Policies</h2>
+  <p style="text-align:center; padding:0 20px;">No refunds after food is prepared.</p>
+</section>
+
+<div class="footer">
+© 2025 French Fries Bar & Grill | All Rights Reserved
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+</script>
 
 </body>
 </html>
