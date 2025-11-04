@@ -1,228 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🍟 French Fries Bar & Grill</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fffdf6;
-      color: #333;
-      overflow-x: hidden;
-    }
-
-    header {
-      background: #ffcb45;
-      padding: 15px 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.8em;
-    }
-
-    nav {
-      margin-top: 10px;
-    }
-
-    nav a {
-      color: #333;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: bold;
-      transition: color 0.3s;
-      cursor: pointer;
-    }
-
-    nav a:hover { color: #e63946; }
-
-    section {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
-      padding: 20px;
-      text-align: center;
-      min-height: 80vh;
-    }
-
-    section.active {
-      display: block;
-      opacity: 1;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-
-    .home-banner {
-      position: relative;
-      width: 100%;
-      height: 80vh;
-      overflow: hidden;
-    }
-
-    .hero-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-      padding: 20px;
-    }
-
-    .overlay h1 { font-size: 2.5rem; margin-bottom: 10px; }
-    .overlay p { font-size: 1.2rem; margin-bottom: 20px; }
-
-    .btn {
-      background: #ffcc00;
-      color: #000;
-      padding: 12px 25px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .btn:hover { background: #ffd633; }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      justify-content: center;
-      margin-top: 30px;
-    }
-
-    .item {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transform: translateY(30px);
-      opacity: 0;
-      transition: transform 0.8s ease, opacity 0.8s ease;
-    }
-
-    .item.visible { transform: translateY(0); opacity: 1; }
-    .item:hover { transform: scale(1.03); }
-
-    .item img { width: 100%; height: 180px; object-fit: cover; }
-    .item h3 { margin: 10px 0; }
-    .item p { margin: 5px 0; }
-
-    .whatsapp-btn {
-      display: inline-block;
-      background: #25D366;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 25px;
-      text-decoration: none;
-      margin-bottom: 15px;
-      transition: background 0.3s;
-    }
-
-    .whatsapp-btn:hover { background: #1ebe57; }
-
-    footer {
-      background: #ffcb45;
-      text-align: center;
-      padding: 10px;
-      font-size: 0.9em;
-      position: relative;
-      bottom: 0;
-      width: 100%;
-    }
-
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.3em; }
-      .overlay h1 { font-size: 1.8rem; }
-      .overlay p { font-size: 1rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Product Guide Email</title>
 </head>
-<body>
-  <header>
-    <h1>🍟 French Fries Bar & Grill</h1>
-    <nav>
-      <a onclick="showSection('home')">Home</a>
-      <a onclick="showSection('menu')">Menu</a>
-      <a onclick="showSection('contact')">Contact</a>
-      <a onclick="showSection('policies')">Policies</a>
-    </nav>
-  </header>
+<body style="margin:0; padding:0; background-color:#f6f6f6; font-family: Arial, sans-serif;">
 
-  <!-- HOME -->
-  <section id="home" class="active">
-    <div class="home-banner">
-      <img src="ChatGPT Image Aug 10, 2025, 07_45_18 AM.png" alt="French Fries Bar & Grill Banner" class="hero-image">
-      <div class="overlay">
-        <h1>🍟 Welcome to French Fries Bar & Grill</h1>
-        <p>The heart of good food and good vibes in Tasbapauni, Nicaragua.</p>
-        <a class="btn" onclick="showSection('menu')">See Our Menu</a>
-      </div>
-    </div>
-  </section>
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f6f6f6; padding:20px 0;">
+  <tr>
+    <td align="center">
+      <!-- Container -->
+      <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff; border-radius:8px; padding:20px;">
+        <tr>
+          <td>
+            <!-- Heading -->
+            <h1 style="color:#333333; font-size:24px; margin:0 0 15px 0;">Hi {{first_name}},</h1>
+            
+            <!-- Intro Text -->
+            <p style="color:#555555; font-size:16px; line-height:1.5; margin:0 0 20px 0;">
+              I'm excited to share something that can help you stop guessing and start selling your digital product.
+            </p>
+            
+            <!-- CTA Button -->
+            <p>
+              <a href="https://github.com/YourUsername/DigitalProduct-Sales/blob/main/DigitalProduct_Guide.pdf?raw=true" 
+                 style="display:inline-block; padding:12px 24px; background-color:#ff6f00; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:bold;">
+                 Download Your Free Guide
+              </a>
+            </p>
+            
+            <!-- Features -->
+            <h2 style="color:#333333; font-size:20px; margin:20px 0 10px 0;">What you’ll get:</h2>
+            <ul style="padding-left:20px; margin:0 0 20px 0; color:#555555; font-size:16px; line-height:1.5;">
+              <li>Key validation tactics so you build something people actually pay for</li>
+              <li>A step-by-step launch timetable to go from idea to revenue</li>
+              <li>Proven strategies to turn one-time buyers into repeat customers</li>
+            </ul>
+            
+            <!-- Outro Text -->
+            <p style="color:#555555; font-size:16px; line-height:1.5; margin:0 0 20px 0;">
+              This guide is designed for creators who want results without the fluff. Grab it now and get the exact blueprint to start seeing traction.
+            </p>
+            
+            <p style="color:#555555; font-size:16px; line-height:1.5; margin:0 0 20px 0;">
+              To your success,<br>
+              <strong>[Your Name]</strong>
+            </p>
+            
+            <hr style="border:none; border-top:1px solid #dddddd; margin:20px 0;">
+            
+            <!-- Footer -->
+            <p style="font-size:12px; color:#888888; text-align:center; margin:0;">
+              If you have any questions, reply to this email. <br>
+              © 2025 [Your Brand Name]. All Rights Reserved.
+            </p>
+          </td>
+        </tr>
+      </table>
+      <!-- End Container -->
+    </td>
+  </tr>
+</table>
 
-  <!-- MENU -->
-  <section id="menu">
-    <h2>Our Menu</h2>
-    <div class="menu-grid">
-      <div class="item">
-        <img src="french fries.png" alt="French Fries">
-        <h3>French Fries</h3>
-        <p>120 Córdobas</p>
-        <a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20French%20Fries%20for%20120%20Córdobas.">Order via WhatsApp</a>
-      </div>
-
-      <div class="item">
-        <img src="Combo8.png" alt="Classic Burger Combo">
-        <h3>Classic Burger Combo</h3>
-        <p>200 Córdobas – Chicken, French Fries & Drink</p>
-        <a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20Classic%20Burger%20Combo%20for%20200%20Córdobas.">Order via WhatsApp</a>
-      </div>
-
-      <div class="item">
-        <img src="combo 10.png" alt="French Fries Mix">
-        <h3>French Fries Mix</h3>
-        <p>300 Córdobas – Grill Mix</p>
-        <a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20French%20Fries%20Mix%20for%20300%20Córdobas.">Order via WhatsApp</a>
-      </div>
-
-      <div class="item">
-        <img src="image_Pippit_202507111556 (1).jpg" alt="Fish & Chips">
-        <h3>Fish & Chips</h3>
-        <p>400 Córdobas</p>
-        <a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20Fish%20%26%20Chips%20for%20400%20Córdobas.">Order via WhatsApp</a>
-      </div>
-
-      <div class="item">
-        <img src="Combo8.png" alt="French Fries Special">
-        <h3>French Fries Special</h3>
-        <p>400 Córdobas</p>
-        <a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20French%20Fries%20Special%20for%20400%20Córdobas.">Order via WhatsApp</a>
-      </div>
-
-      <div class="item">
-        <img src="combo 10.png" alt="Grill Mix">
-        <h3>Grill Mix</h3>
-        <p>500 Córdobas</p>
-        <a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20Grill
+</body>
+</html>
