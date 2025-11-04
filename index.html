@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" /><!DOCTYPE html>
-<html lang="en">
-<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🍟 French Fries Bar & Grill</title>
@@ -15,9 +12,9 @@
       background: #fffdf6;
       color: #333;
       overflow-x: hidden;
-      transition: background 0.5s ease;
     }
 
+    /* HEADER */
     header {
       background: #ffcb45;
       padding: 15px 20px;
@@ -48,6 +45,7 @@
       color: #e63946;
     }
 
+    /* SECTIONS */
     section {
       display: none;
       opacity: 0;
@@ -62,6 +60,66 @@
       animation: fadeIn 1s ease-in-out;
     }
 
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    /* HOME HERO */
+    .home-banner {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .overlay h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .overlay p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background: #ffcc00;
+      color: #000;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #ffd633;
+    }
+
+    /* MENU GRID */
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -129,21 +187,9 @@
     }
 
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.3em;
-      }
-    }
-
-    .hero {
-      animation: fadeIn 2s ease-in-out;
-      border-radius: 15px;
-      margin-top: 15px;
-      max-width: 95%;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+      header h1 { font-size: 1.3em; }
+      .overlay h1 { font-size: 1.8rem; }
+      .overlay p { font-size: 1rem; }
     }
   </style>
 </head>
@@ -160,29 +206,26 @@
 
   <!-- HOME -->
   <section id="home" class="active">
-    <h2>Welcome to French Fries Bar & Grill!</h2>
-    <p>Located in the heart of Tasbapauni, Nicaragua 🇳🇮</p>
-    <p>Serving crispy golden fries, juicy burgers, and fresh seafood — all made with love and local ingredients.</p>
-    <img src="ChatGPT Image Aug 10, 2025, 07_45.png" alt="Restaurant Front" class="hero">
+    <div class="home-banner">
+      <img src="ChatGPT Image Aug 10, 2025, 07_45.png" alt="French Fries Bar & Grill Banner" class="hero-image">
+      <div class="overlay">
+        <h1>🍟 Welcome to French Fries Bar & Grill</h1>
+        <p>The heart of good food and good vibes in Tasbapauni, Nicaragua.</p>
+        <a href="#menu" class="btn" onclick="showSection('menu')">See Our Menu</a>
+      </div>
+    </div>
   </section>
 
   <!-- MENU -->
   <section id="menu">
     <h2>Our Menu</h2>
     <div class="menu-grid">
-
       <div class="item"><img src="french fries.png" alt="French Fries"><h3>French Fries</h3><p>$3.99</p><a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20French%20Fries.">Order via WhatsApp</a></div>
-
       <div class="item"><img src="Combo8.png" alt="Classic Burger Combo"><h3>Classic Burger Combo</h3><p>$6.99</p><a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20a%20Burger%20Combo.">Order via WhatsApp</a></div>
-
       <div class="item"><img src="combo 10.png" alt="Seafood Platter"><h3>Seafood Platter</h3><p>$9.99</p><a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20a%20Seafood%20Platter.">Order via WhatsApp</a></div>
-
       <div class="item"><img src="image_Pippit_202507111556 (1).jpg" alt="Chicken Wings"><h3>Chicken Wings</h3><p>$7.99</p><a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20Chicken%20Wings.">Order via WhatsApp</a></div>
-
       <div class="item"><img src="Combo8.png" alt="Grill Mix"><h3>Grill Mix</h3><p>$8.99</p><a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20Grill%20Mix.">Order via WhatsApp</a></div>
-
       <div class="item"><img src="combo 10.png" alt="Fish & Chips"><h3>Fish & Chips</h3><p>$8.49</p><a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20Fish%20and%20Chips.">Order via WhatsApp</a></div>
-
     </div>
   </section>
 
@@ -214,9 +257,15 @@
       if (id === 'menu') {
         const items = document.querySelectorAll('.item');
         items.forEach((item, index) => {
+          item.classList.remove('visible');
           setTimeout(() => item.classList.add('visible'), 150 * index);
         });
       }
+    }
+
+    // Trigger menu animation if already active
+    if (document.getElementById('menu').classList.contains('active')) {
+      showSection('menu');
     }
   </script>
 </body>
