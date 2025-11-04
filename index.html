@@ -3,138 +3,194 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>French Fries Bar & Grill – Tasbapauni</title>
+  <title>🍟 French Fries Bar & Grill</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #fff8f0;
+      background: #fffdf6;
       color: #333;
+      overflow-x: hidden;
+      transition: background 0.5s ease;
     }
 
     header {
-      background-color: #ffb347;
-      color: #fff;
+      background: #ffcb45;
+      padding: 15px 20px;
       text-align: center;
-      padding: 15px 0;
-      font-size: 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
     }
 
     nav {
-      display: flex;
-      justify-content: center;
-      background-color: #fff3e0;
-      padding: 10px;
-      flex-wrap: wrap;
+      margin-top: 10px;
     }
 
     nav a {
-      margin: 5px 10px;
+      color: #333;
       text-decoration: none;
-      color: #444;
+      margin: 0 10px;
       font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #e63946;
     }
 
     section {
-      text-align: center;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
       padding: 20px;
+      text-align: center;
     }
 
-    .menu-image {
-      width: 90%;
-      max-width: 600px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    section.active {
+      display: block;
+      opacity: 1;
     }
 
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 20px;
+      justify-content: center;
+      margin-top: 30px;
     }
 
     .item {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 10px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .item:hover {
+      transform: translateY(-5px);
     }
 
     .item img {
       width: 100%;
-      height: 200px;
+      height: 180px;
       object-fit: cover;
-      border-radius: 10px;
     }
 
-    button {
-      background-color: #ff9800;
+    .item h3 {
+      margin: 10px 0;
+    }
+
+    .item p {
+      margin: 5px 0;
+    }
+
+    .whatsapp-btn {
+      display: inline-block;
+      background: #25D366;
       color: white;
-      border: none;
       padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 5px;
+      border-radius: 25px;
+      text-decoration: none;
+      margin-bottom: 15px;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      background: #1ebe57;
     }
 
     footer {
+      background: #ffcb45;
       text-align: center;
-      background-color: #ffb347;
-      color: #fff;
-      padding: 15px;
-      margin-top: 30px;
+      padding: 10px;
+      font-size: 0.9em;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.3em;
+      }
     }
   </style>
 </head>
 <body>
-  <header>🍟 French Fries Bar & Grill</header>
+  <header>
+    <h1>🍟 French Fries Bar & Grill</h1>
+    <nav>
+      <a href="#" onclick="showSection('home')">Home</a>
+      <a href="#" onclick="showSection('menu')">Menu</a>
+      <a href="#" onclick="showSection('contact')">Contact</a>
+      <a href="#" onclick="showSection('policies')">Policies</a>
+    </nav>
+  </header>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Menu</a>
-    <a href="#">Contact</a>
-    <a href="#">Policies</a>
-  </nav>
+  <section id="home" class="active">
+    <h2>Welcome to French Fries Bar & Grill!</h2>
+    <p>Located in the heart of Tasbapauni, Nicaragua 🇳🇮</p>
+    <p>Serving crispy golden fries, juicy burgers, and fresh seafood — all made with love and local ingredients.</p>
+    <img src="Combo8.png" alt="Restaurant Photo" style="max-width: 90%; border-radius: 15px; margin-top: 15px;">
+  </section>
 
-  <section>
+  <section id="menu">
     <h2>Our Menu</h2>
-    <img src="ChatGPT Image Aug 10, 2025, 07_14_38 AM.png" alt="Menu Image" class="menu-image" />
-
     <div class="menu-grid">
       <div class="item">
-        <img src="ChatGPT Image Aug 10, 2025, 07_14_38 AM.png" alt="French Fries">
+        <img src="french fries.png" alt="French Fries">
         <h3>French Fries</h3>
         <p>$3.99</p>
-        <a href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20French%20Fries%20🍟">
-          <button>Order via WhatsApp</button>
-        </a>
+        <a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20French%20Fries.">Order via WhatsApp</a>
       </div>
 
       <div class="item">
-        <img src="ChatGPT Image Aug 10, 2025, 07_14_38 AM.png" alt="Burger">
+        <img src="Combo8.png" alt="Burger">
         <h3>Burger</h3>
         <p>$6.99</p>
-        <a href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20a%20Burger%20🍔">
-          <button>Order via WhatsApp</button>
-        </a>
+        <a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20a%20Burger.">Order via WhatsApp</a>
       </div>
 
       <div class="item">
-        <img src="ChatGPT Image Aug 10, 2025, 07_14_38 AM.png" alt="Seafood Platter">
+        <img src="combo 10.png" alt="Seafood Platter">
         <h3>Seafood Platter</h3>
         <p>$9.99</p>
-        <a href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20the%20Seafood%20Platter%20🦐">
-          <button>Order via WhatsApp</button>
-        </a>
+        <a class="whatsapp-btn" href="https://wa.me/50585065976?text=Hi!%20I%20want%20to%20order%20a%20Seafood%20Platter.">Order via WhatsApp</a>
       </div>
     </div>
   </section>
 
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>📍 Tasbapauni, Nicaragua</p>
+    <p>📞 +505 8506 5976</p>
+    <p>⏰ Open 8 AM – 10 PM</p>
+    <a class="whatsapp-btn" href="https://wa.me/50585065976">Chat on WhatsApp</a>
+  </section>
+
+  <section id="policies">
+    <h2>Policies</h2>
+    <p>We prepare all meals fresh and made-to-order. Refunds are available only for incorrect or missing orders. Thank you for supporting local business!</p>
+  </section>
+
   <footer>
-    📍 Tasbapauni, Nicaragua | ⏰ Open 8 AM – 10 PM | 📞 +505 8506 5976<br>
     © 2025 French Fries Bar & Grill | All Rights Reserved
   </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
