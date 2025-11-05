@@ -29,27 +29,23 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .quantity button:hover { background:#128C7E; }
 .quantity input { width:50px; text-align:center; padding:4px; border-radius:6px; border:1px solid #ccc; }
 
-/* Fixed Draggable Bottom Panel */
+/* Order Panel at bottom of page */
 #orderPanel {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 280px;
   background: white;
-  padding: 12px;
-  border-radius: 12px 0 0 0;
-  box-shadow: -2px -2px 15px rgba(0,0,0,0.2);
-  z-index: 1000;
+  padding: 16px;
+  border-top-left-radius:12px;
+  border-top-right-radius:12px;
+  box-shadow:0 -2px 15px rgba(0,0,0,0.15);
+  max-width:1000px;
+  margin:20px auto 0 auto;
   font-size:14px;
-  cursor: grab;
-  user-select: none;
 }
 #orderPanel label { font-weight:600; margin-top:8px; display:block; }
 #orderPanel input, #orderPanel select { width:100%; padding:6px; margin-top:4px; border-radius:6px; border:1px solid #ccc; margin-bottom:8px; }
 #bankInfo { display:none; margin-top:8px; font-size:13px; background:#fff3cd; padding:8px; border-radius:8px; border:1px solid #e0c861; }
 
 /* Cart Summary inside panel */
-#cartItems { max-height:120px; overflow-y:auto; margin-bottom:6px; }
+#cartItems { max-height:150px; overflow-y:auto; margin-bottom:6px; }
 #cartItems .cart-item { display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px; }
 #cartTotal { font-weight:700; color:#d62828; }
 
@@ -58,7 +54,7 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 #orderBtn:hover { background:#128C7E; }
 
 /* Footer */
-footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top:30px; }
+footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top:20px; }
 </style>
 </head>
 <body>
@@ -120,12 +116,7 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
     </div>
 </div>
 
-<footer>
-📍 Tasbapauni, Nicaragua • Open Everyday 8 AM – 10 PM<br>
-© 2025 French Fries Bar & Grill
-</footer>
-
-<!-- Fixed Draggable Bottom Order Panel -->
+<!-- Order Panel at bottom -->
 <div id="orderPanel">
     <label>Nombre</label>
     <input id="clientName" type="text" placeholder="Tu nombre">
@@ -157,6 +148,11 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 
     <a href="#" id="orderBtn">Order Now</a>
 </div>
+
+<footer>
+📍 Tasbapauni, Nicaragua • Open Everyday 8 AM – 10 PM<br>
+© 2025 French Fries Bar & Grill
+</footer>
 
 <script>
 // Hero Carousel
@@ -240,31 +236,6 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
 
     orderText+=`%0A*Entrega:* ${deliverySelect.options[deliverySelect.selectedIndex].text}%0A*Total:* C$${total}`;
     window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
-});
-
-// Draggable Panel
-const panel = document.getElementById('orderPanel');
-let isDragging = false;
-let startY, startBottom;
-
-panel.addEventListener('mousedown', e=>{
-    isDragging=true;
-    startY=e.clientY;
-    startBottom=parseInt(window.getComputedStyle(panel).bottom);
-    panel.style.cursor='grabbing';
-});
-
-document.addEventListener('mousemove', e=>{
-    if(!isDragging) return;
-    let dy = startY - e.clientY;
-    let newBottom = startBottom + dy;
-    if(newBottom<0) newBottom=0;
-    if(newBottom>window.innerHeight - 100) newBottom=window.innerHeight - 100;
-    panel.style.bottom=newBottom+'px';
-});
-
-document.addEventListener('mouseup', ()=>{
-    if(isDragging){ isDragging=false; panel.style.cursor='grab'; }
 });
 </script>
 
