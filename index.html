@@ -39,11 +39,10 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .order-btn:hover { transform:scale(1.05); opacity:0.9; }
 
 /* Delivery Selector */
-#deliverySelect { position:fixed; bottom:130px; right:20px; z-index:1000; padding:8px 12px; font-size:14px; border-radius:8px; border:1px solid #ccc; }
+#deliverySelect { position:fixed; bottom:80px; right:20px; z-index:1000; padding:8px 12px; font-size:14px; border-radius:8px; border:1px solid #ccc; }
 
-/* New Customer Fields */
-#customerInfo { position:fixed; bottom:90px; right:20px; z-index:1000; background:white; padding:10px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.2); width:230px; }
-#customerInfo input { width:100%; padding:6px; margin-top:6px; border-radius:6px; border:1px solid #ccc; font-size:14px; }
+/* Customer Info Box */
+.info-box { position:fixed; bottom:140px; right:20px; background:white; padding:12px; border-radius:12px; width:250px; box-shadow:0 4px 10px rgba(0,0,0,0.2); z-index:1000; }
 
 /* Footer */
 footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top:30px; }
@@ -62,71 +61,81 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
     </div>
 </div>
 
-<!-- Products -->
 <div class="wrapper">
-<div class="products-grid">
+    <div class="products-grid">
+        <div class="product-card" data-name="6 French Fries Pack" data-price="240">
+            <img src="https://github.com/user-attachments/assets/1a76b8c8-e8bc-4968-aba4-b68b14554e9f" alt="6 French Fries Pack">
+            <div class="info">
+                <h3>6 French Fries Pack</h3>
+                <p>Crispy golden fries made fresh daily.</p>
+                <div class="price">C$240</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
+        </div>
 
-<!-- Product 1 -->
-<div class="product-card" data-name="6 French Fries Pack" data-price="240">
-    <img src="https://github.com/user-attachments/assets/1a76b8c8-e8bc-4968-aba4-b68b14554e9f" alt="6 French Fries Pack">
-    <div class="info">
-        <h3>6 French Fries Pack</h3>
-        <p>Crispy golden fries made fresh daily.</p>
-        <div class="price">C$240</div>
-        <div class="quantity">
-            <button class="minus">−</button>
-            <input type="number" min="0" value="0">
-            <button class="plus">+</button>
+        <div class="product-card" data-name="Chicken + Fries + Drink Combo" data-price="300">
+            <img src="https://github.com/user-attachments/assets/f8114b7f-81c2-4ed7-bbd0-dee562412c96" alt="Chicken + Fries + Drink Combo">
+            <div class="info">
+                <h3>Chicken + Fries + Drink Combo</h3>
+                <p>Crispy chicken + fries + soda</p>
+                <div class="price">C$300</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="French Fries Grill Mix" data-price="550">
+            <img src="https://github.com/user-attachments/assets/10cc8913-d76a-46aa-8951-8b8b7ad13c1b" alt="French Fries Grill Mix">
+            <div class="info">
+                <h3>French Fries Grill Mix</h3>
+                <p>Mixed grilled meat + fries</p>
+                <div class="price">C$550</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Product 2 -->
-<div class="product-card" data-name="Chicken + Fries + Drink Combo" data-price="300">
-    <img src="https://github.com/user-attachments/assets/f8114b7f-81c2-4ed7-bbd0-dee562412c96" alt="Chicken + Fries + Drink Combo">
-    <div class="info">
-        <h3>Chicken + Fries + Drink Combo</h3>
-        <p>Crispy chicken + fries + soda</p>
-        <div class="price">C$300</div>
-        <div class="quantity">
-            <button class="minus">−</button>
-            <input type="number" min="0" value="0">
-            <button class="plus">+</button>
-        </div>
-    </div>
-</div>
-
-<!-- Product 3 -->
-<div class="product-card" data-name="French Fries Grill Mix" data-price="550">
-    <img src="https://github.com/user-attachments/assets/10cc8913-d76a-46aa-8951-8b8b7ad13c1b" alt="French Fries Grill Mix">
-    <div class="info">
-        <h3>French Fries Grill Mix</h3>
-        <p>Mixed grilled meat + fries</p>
-        <div class="price">C$550</div>
-        <div class="quantity">
-            <button class="minus">−</button>
-            <input type="number" min="0" value="0">
-            <button class="plus">+</button>
-        </div>
-    </div>
-</div>
-
-</div>
-</div>
-
-<!-- Customer Name + Address -->
-<div id="customerInfo">
-    <input id="customerName" type="text" placeholder="Your Name">
-    <input id="customerAddress" type="text" placeholder="Your Address">
-</div>
-
-<!-- Pickup / Delivery -->
+<!-- Delivery / Pickup -->
 <select id="deliverySelect">
     <option value="0">Pickup (No extra)</option>
     <option value="20">Delivery +C$20</option>
 </select>
 
-<!-- Cart Summary -->
+<!-- Customer Fields -->
+<div class="info-box">
+    <label style="font-weight:600;">Nombre</label>
+    <input id="clientName" type="text" placeholder="Tu nombre" style="width:100%; padding:6px; margin-bottom:8px; border-radius:6px; border:1px solid #ccc;">
+
+    <label style="font-weight:600;">Dirección</label>
+    <input id="clientAddress" type="text" placeholder="Barrio / Casa / Referencia" style="width:100%; padding:6px; margin-bottom:8px; border-radius:6px; border:1px solid #ccc;">
+
+    <label style="font-weight:600;">Método de Pago</label>
+    <select id="paymentMethod" style="width:100%; padding:6px; border-radius:6px; border:1px solid #ccc; margin-top:6px;">
+        <option value="delivery">Pagar al entregar</option>
+        <option value="bancentro">Transferencia Bancentro</option>
+    </select>
+
+    <div id="bankInfo" style="display:none; margin-top:8px; font-size:13px; background:#fff3cd; padding:8px; border-radius:8px; border:1px solid #e0c861;">
+        <strong>Banco Bancentro</strong><br>
+        Cuenta: <b>123456789</b><br>
+        Nombre: <b>French Fries Bar & Grill</b><br>
+        <input id="paymentRef" type="text" placeholder="Número de referencia" style="width:100%; padding:6px; margin-top:6px; border-radius:6px; border:1px solid #ccc;">
+    </div>
+</div>
+
+<!-- Cart Summary Panel -->
 <div id="cartSummary">
     <h4>Cart Summary</h4>
     <div id="cartItems"></div>
@@ -142,86 +151,100 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 
 <script>
 // Hero Carousel
-const heroInner=document.getElementById('heroInner');
-const heroImagesCount=heroInner.children.length;
-let currentIndex=0;
-function slideTo(i){ heroInner.style.transform=`translateX(-${i*100}%)`; currentIndex=i; }
+const heroInner = document.getElementById('heroInner');
+const heroImagesCount = heroInner.children.length;
+let currentIndex = 0;
+function slideTo(index){ heroInner.style.transform = `translateX(-${index * 100}%)`; currentIndex=index; }
 setInterval(()=>slideTo((currentIndex+1)%heroImagesCount),5000);
 
 // Quantity Buttons
 document.querySelectorAll('.product-card').forEach(card=>{
-const minus=card.querySelector('.minus');
-const plus=card.querySelector('.plus');
-const input=card.querySelector('input');
-
-minus.addEventListener('click',()=>{ if(input.value>0) input.value--; updateCart(); });
-plus.addEventListener('click',()=>{ input.value++; updateCart(); });
-input.addEventListener('input',updateCart);
+    const minus = card.querySelector('.minus');
+    const plus = card.querySelector('.plus');
+    const input = card.querySelector('input');
+    minus.addEventListener('click', ()=> { if(input.value>0) input.value--; updateCart(); });
+    plus.addEventListener('click', ()=> { input.value++; updateCart(); });
+    input.addEventListener('input', updateCart);
 });
 
-// Update Cart
+// Update Cart Summary
 function updateCart(){
-const cartItems=document.getElementById('cartItems');
-const cartTotal=document.getElementById('cartTotal');
-const deliverySelect=document.getElementById('deliverySelect');
-const deliveryCost=parseInt(deliverySelect.value);
-let html='';
-let total=deliveryCost;
-
-document.querySelectorAll('.product-card').forEach(p=>{
-const qty=parseInt(p.querySelector('input').value);
-if(qty>0){
- const name=p.dataset.name;
- const price=parseInt(p.dataset.price);
- html+=`<div class="cart-item">${name} x${qty} = C$${price*qty}</div>`;
- total+=price*qty;
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const deliverySelect = document.getElementById('deliverySelect');
+    const deliveryCost = parseInt(deliverySelect.value);
+    let html = '';
+    let total = deliveryCost;
+    document.querySelectorAll('.product-card').forEach(p=>{
+        const qty = parseInt(p.querySelector('input').value);
+        if(qty>0){
+            const name = p.dataset.name;
+            const price = parseInt(p.dataset.price);
+            html += `<div class="cart-item">${name} x${qty} = C$${price*qty}</div>`;
+            total += price*qty;
+        }
+    });
+    if(html==='') html='<div>No items selected</div>';
+    cartItems.innerHTML = html;
+    cartTotal.textContent = total;
 }
-});
-if(html==='') html='<div>No items selected</div>';
-cartItems.innerHTML=html;
-cartTotal.textContent=total;
-}
-document.getElementById('deliverySelect').addEventListener('change',updateCart);
+document.getElementById('deliverySelect').addEventListener('change', updateCart);
 updateCart();
 
-// Order Button
-document.getElementById('orderBtn').addEventListener('click',()=>{
-const name=document.getElementById('customerName').value;
-const address=document.getElementById('customerAddress').value;
-
-if(name.trim()==''||address.trim()==''){
- alert("Please enter your name and address.");
- return;
-}
-
-const deliverySelect=document.getElementById('deliverySelect');
-const deliveryCost=parseInt(deliverySelect.value);
-const products=document.querySelectorAll('.product-card');
-
-let orderText=`*Nuevo Pedido*%0A%0A`;
-orderText+=`👤 *Nombre:* ${name}%0A`;
-orderText+=`📍 *Dirección:* ${address}%0A%0A`;
-
-let total=deliveryCost;
-let anySelected=false;
-
-products.forEach(p=>{
-const qty=parseInt(p.querySelector('input').value);
-if(qty>0){
- anySelected=true;
- const name=p.dataset.name;
- const price=parseInt(p.dataset.price);
- orderText+=`- ${name} x${qty} = C$${price*qty}%0A`;
- total+=price*qty;
-}
+// Show Bancentro Payment Info
+document.getElementById('paymentMethod').addEventListener('change', () => {
+    document.getElementById('bankInfo').style.display =
+        document.getElementById('paymentMethod').value === "bancentro" ? "block" : "none";
 });
 
-if(!anySelected){ alert("Por favor, selecciona al menos un producto."); return; }
+// Order Button
+document.getElementById('orderBtn').addEventListener('click', ()=>{
 
-orderText+=`%0A🚚 ${deliverySelect.options[deliverySelect.selectedIndex].text}`;
-orderText+=`%0A💵 *Total: C$${total}*`;
+    const clientName=document.getElementById('clientName').value.trim();
+    const clientAddress=document.getElementById('clientAddress').value.trim();
+    const payment=document.getElementById('paymentMethod').value;
+    const paymentRef=document.getElementById('paymentRef').value.trim();
 
-window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
+    if(clientName===""||clientAddress===""){
+        alert("Por favor ingresa tu nombre y dirección.");
+        return;
+    }
+
+    if(payment==="bancentro" && paymentRef===""){
+        alert("Por favor ingresa el número de referencia del pago.");
+        return;
+    }
+
+    const deliverySelect=document.getElementById('deliverySelect');
+    const deliveryCost=parseInt(deliverySelect.value);
+
+    const products=document.querySelectorAll('.product-card');
+    let orderText=`*Nuevo Pedido*%0A%0A*Nombre:* ${clientName}%0A*Dirección:* ${clientAddress}%0A`;
+    
+    orderText += `*Pago:* ${payment==="delivery" ? "Pagar al Entregar" : "Transferencia Bancentro"}%0A`;
+    if(payment==="bancentro") orderText+=`*Ref:* ${paymentRef}%0A`;
+
+    orderText+=`%0A*Pedido:*%0A`;
+
+    let total=deliveryCost;
+    let anySelected=false;
+
+    products.forEach(p=>{
+        const qty=parseInt(p.querySelector('input').value);
+        if(qty>0){
+            anySelected=true;
+            const name=p.dataset.name;
+            const price=parseInt(p.dataset.price);
+            orderText+=`• ${name} x${qty} = C$${price*qty}%0A`;
+            total+=price*qty;
+        }
+    });
+
+    if(!anySelected){ alert("Selecciona al menos un producto."); return; }
+
+    orderText+=`%0A*Entrega:* ${deliverySelect.options[deliverySelect.selectedIndex].text}%0A*Total:* C$${total}`;
+
+    window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
 });
 </script>
 
