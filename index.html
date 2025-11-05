@@ -30,7 +30,7 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .quantity input { width:50px; text-align:center; padding:4px; border-radius:6px; border:1px solid #ccc; }
 
 /* Right-side Panel */
-.right-panel { position:fixed; top:120px; right:20px; width:260px; height:70vh; background:white; padding:16px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:1000; font-size:14px; display:flex; flex-direction:column; gap:12px; overflow-y:auto; }
+.right-panel { position:fixed; bottom:80px; right:20px; width:260px; max-height:70vh; background:white; padding:16px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:1000; font-size:14px; display:flex; flex-direction:column; gap:12px; overflow-y:auto; transition: all 0.3s ease; }
 .right-panel label { font-weight:600; margin-top:6px; display:block; }
 .right-panel input, .right-panel select { width:100%; padding:6px; border-radius:6px; border:1px solid #ccc; }
 #bankInfo { display:none; margin-top:8px; font-size:13px; background:#fff3cd; padding:8px; border-radius:8px; border:1px solid #e0c861; }
@@ -46,6 +46,15 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 
 /* Footer */
 footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top:30px; }
+
+/* Mobile Responsiveness */
+@media (max-width:768px){
+    .right-panel { bottom:20px; right:20px; width:60px; height:60px; border-radius:50%; padding:0; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-direction:column; overflow:hidden; }
+    .right-panel.expanded { width:260px; height:auto; border-radius:12px; padding:16px; }
+    .right-panel .content { display:none; flex-direction:column; gap:12px; }
+    .right-panel.expanded .content { display:flex; }
+    .order-btn { margin-top:8px; }
+}
 </style>
 </head>
 <body>
@@ -112,34 +121,42 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 © 2025 French Fries Bar & Grill
 </footer>
 
-<!-- Right Panel: Customer Info + Cart + Order -->
-<div class="right-panel">
-    <label>Nombre</label>
-    <input id="clientName" type="text" placeholder="Tu nombre">
+<!-- Right Panel: Collapsible -->
+<div class="right-panel" id="rightPanel">
+    <div class="content">
+        <label>Nombre</label>
+        <input id="clientName" type="text" placeholder="Tu nombre">
 
-    <label>Dirección</label>
-    <input id="clientAddress" type="text" placeholder="Barrio / Casa / Referencia">
+        <label>Dirección</label>
+        <input id="clientAddress" type="text" placeholder="Barrio / Casa / Referencia">
 
-    <label>Método de Pago</label>
-    <select id="paymentMethod">
-        <option value="delivery">Pagar al entregar</option>
-        <option value="bancentro">Transferencia Bancentro</option>
-    </select>
+        <label>Método de Pago</label>
+        <select id="paymentMethod">
+            <option value="delivery">Pagar al entregar</option>
+            <option value="bancentro">Transferencia Bancentro</option>
+        </select>
 
-    <div id="bankInfo">
-        <strong>Banco Bancentro</strong><br>
-        Cuenta: <b>123456789</b><br>
-        Nombre: <b>French Fries Bar & Grill</b><br>
-        <input id="paymentRef" type="text" placeholder="Número de referencia">
+        <div id="bankInfo">
+            <strong>Banco Bancentro</strong><br>
+            Cuenta: <b>123456789</b><br>
+            Nombre: <b>French Fries Bar & Grill</b><br>
+            <input id="paymentRef" type="text" placeholder="Número de referencia">
+        </div>
+
+        <label>Entrega</label>
+        <select id="deliverySelect">
+            <option value="0">Pickup (Gratis)</option>
+            <option value="20">Delivery +C$20</option>
+        </select>
+
+        <div id="cartSummary">
+            <h4>Cart Summary</h4>
+            <div id="cartItems"></div>
+            <div style="font-weight:700; margin-top:6px;">Total: C$<span id="cartTotal">0</span></div>
+        </div>
+
+        <a class="order-btn" id="orderBtn">Order Now</a>
     </div>
-
-    <div id="cartSummary">
-        <h4>Cart Summary</h4>
-        <div id="cartItems"></div>
-        <div style="font-weight:700; margin-top:6px;">Total: C$<span id="cartTotal">0</span></div>
-    </div>
-
-    <a class="order-btn" id="orderBtn">Order Now</a>
 </div>
 
 <script>
@@ -164,8 +181,9 @@ document.querySelectorAll('.product-card').forEach(card=>{
 function updateCart(){
     const cartItems = document.getElementById('cartItems');
     const cartTotal = document.getElementById('cartTotal');
+    const deliveryCost = parseInt(document.getElementById('deliverySelect').value);
     let html = '';
-    let total = 0;
+    let total = deliveryCost;
     document.querySelectorAll('.product-card').forEach(p=>{
         const qty = parseInt(p.querySelector('input').value);
         if(qty>0){
@@ -179,9 +197,11 @@ function updateCart(){
     cartItems.innerHTML = html;
     cartTotal.textContent = total;
 }
-updateCart();
+
+// Event listeners
 document.querySelectorAll('.product-card input').forEach(input => input.addEventListener('input', updateCart));
 document.querySelectorAll('.product-card .plus, .product-card .minus').forEach(btn => btn.addEventListener('click', updateCart));
+document.getElementById('deliverySelect').addEventListener('change', updateCart);
 
 // Show Bancentro Payment Info
 document.getElementById('paymentMethod').addEventListener('change', () => {
@@ -195,6 +215,8 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
     const clientAddress=document.getElementById('clientAddress').value.trim();
     const payment=document.getElementById('paymentMethod').value;
     const paymentRef=document.getElementById('paymentRef').value.trim();
+    const deliveryCost = parseInt(document.getElementById('deliverySelect').value);
+
     if(clientName===""||clientAddress===""){ alert("Por favor ingresa tu nombre y dirección."); return; }
     if(payment==="bancentro" && paymentRef===""){ alert("Por favor ingresa el número de referencia del pago."); return; }
 
@@ -202,9 +224,9 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
     let orderText=`*Nuevo Pedido*%0A%0A*Nombre:* ${clientName}%0A*Dirección:* ${clientAddress}%0A`;
     orderText += `*Pago:* ${payment==="delivery" ? "Pagar al Entregar" : "Transferencia Bancentro"}%0A`;
     if(payment==="bancentro") orderText+=`*Ref:* ${paymentRef}%0A`;
-    orderText+=`%0A*Pedido:*%0A`;
+    orderText += `*Entrega:* ${document.getElementById('deliverySelect').selectedOptions[0].text}%0A%0A*Pedido:*%0A`;
 
-    let total=0;
+    let total = deliveryCost;
     let anySelected=false;
     products.forEach(p=>{
         const qty=parseInt(p.querySelector('input').value);
@@ -219,13 +241,14 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
     if(!anySelected){ alert("Selecciona al menos un producto."); return; }
     orderText+=`%0A*Total:* C$${total}`;
 
-    // Copy to clipboard
-    navigator.clipboard.writeText(orderText.replace(/%0A/g,"\n")).then(()=>{
-        alert("Pedido copiado al portapapeles!");
-    });
-
-    // Open WhatsApp
+    navigator.clipboard.writeText(orderText.replace(/%0A/g,"\n")).then(()=>{ alert("Pedido copiado al portapapeles!"); });
     window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
+});
+
+// Toggle panel on mobile
+const rightPanel = document.getElementById('rightPanel');
+rightPanel.addEventListener('click', ()=>{
+    if(window.innerWidth <= 768) rightPanel.classList.toggle('expanded');
 });
 </script>
 
