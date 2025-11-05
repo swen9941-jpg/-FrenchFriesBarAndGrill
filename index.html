@@ -9,10 +9,12 @@
 body { margin:0; font-family:'Montserrat', sans-serif; background:#fafafa; color:#222; }
 header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:center; font-size:28px; font-weight:700; position:sticky; top:0; z-index:1000; }
 
+/* Hero Section */
 .hero { position:relative; height:60vh; overflow:hidden; display:flex; align-items:center; justify-content:center; }
 .hero-inner { display:flex; transition: transform 0.5s ease-in-out; height:100%; width:300%; }
 .hero-inner img { width:100%; height:100%; object-fit:cover; flex-shrink:0; }
 
+/* Wrapper & Products */
 .wrapper { max-width:1000px; margin:auto; padding:20px; }
 .products-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px; margin-top:20px; }
 .product-card { background:white; border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; display:flex; flex-direction:column; cursor:pointer; }
@@ -23,132 +25,154 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .info p { margin:6px 0; font-size:14px; color:#555; }
 .price { font-size:18px; margin-top:6px; font-weight:700; color:#d62828; }
 .quantity { margin-top:8px; display:flex; justify-content:center; align-items:center; gap:6px; }
-.quantity button { padding:4px 10px; font-weight:700; font-size:16px; border:none; background:#25D366; color:white; border-radius:6px; cursor:pointer; transition: 0.2s; }
+.quantity button { padding:4px 10px; font-weight:700; font-size:16px; border:none; background:#25D366; color:white; border-radius:6px; cursor:pointer; transition:0.2s; }
 .quantity button:hover { background:#128C7E; }
 .quantity input { width:50px; text-align:center; padding:4px; border-radius:6px; border:1px solid #ccc; }
 
-#cartSummary { position:fixed; top:120px; right:20px; background:white; border-radius:12px; padding:16px; box-shadow:0 4px 15px rgba(0,0,0,0.2); max-width:260px; z-index:1000; font-size:14px; }
+/* Name & Address Input */
+.order-info { position:fixed; bottom:140px; right:20px; background:white; padding:10px; border-radius:10px; box-shadow:0 3px 10px rgba(0,0,0,0.2); width:230px; }
+.order-info input { width:100%; padding:6px; margin-top:6px; border-radius:6px; border:1px solid #bbb; }
+
+/* Cart Summary Panel */
+#cartSummary { position:fixed; top:120px; right:20px; background:white; border-radius:12px; padding:16px; box-shadow:0 4px 15px rgba(0,0,0,0.2); max-width:250px; z-index:1000; font-size:14px; }
 #cartSummary h4 { margin-top:0; text-align:center; font-weight:700; }
 .cart-item { display:flex; justify-content:space-between; margin-bottom:6px; }
 
-.order-btn { display:block; background:#25D366; text-align:center; color:white; padding:14px 20px; border-radius:50px; font-size:16px; text-decoration:none; font-weight:700; position: fixed; bottom:20px; right:20px; z-index:1000; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease; }
+/* Floating Order Button */
+.order-btn { display:block; background:#25D366; text-align:center; color:white; padding:14px 20px; border-radius:50px; font-size:16px; text-decoration:none; font-weight:700; position:fixed; bottom:20px; right:20px; z-index:1000; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease; }
 .order-btn:hover { transform:scale(1.05); opacity:0.9; }
 
-#deliverySelect, #customerName, #customerAddress {
-    padding:8px 12px; border:1px solid #ccc; border-radius:8px; width:100%; margin-top:8px;
-}
+/* Delivery Selector */
+#deliverySelect { position:fixed; bottom:100px; right:20px; z-index:1000; padding:8px 12px; font-size:14px; border-radius:8px; border:1px solid #ccc; }
 
 footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top:30px; }
-
-@media (max-width:600px){
-    #cartSummary { position:static; margin-top:20px; max-width:100%; }
-}
 </style>
 </head>
 <body>
 
 <header>🍟 French Fries Bar & Grill — Tasbapauni</header>
 
+<!-- Hero Carousel -->
 <div class="hero" id="hero">
     <div class="hero-inner" id="heroInner">
-        <img src="YOUR_IMAGE_1">
-        <img src="YOUR_IMAGE_2">
-        <img src="YOUR_IMAGE_3">
+        <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/images/1.jpg">
+        <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/images/2.jpg">
+        <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/images/3.jpg">
     </div>
 </div>
 
 <div class="wrapper">
+    <div class="products-grid">
 
-<div class="products-grid">
-    <div class="product-card" data-name="6 French Fries Pack" data-price="240">
-        <img src="YOUR_IMAGE_2">
-        <div class="info">
-            <h3>6 French Fries Pack</h3>
-            <p>Crispy golden fries made fresh daily.</p>
-            <div class="price">C$240</div>
-            <div class="quantity"><button class="minus">−</button><input type="number" min="0" value="0"><button class="plus">+</button></div>
+        <div class="product-card" data-name="6 French Fries Pack" data-price="240">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/images/fries.jpg">
+            <div class="info">
+                <h3>6 French Fries Pack</h3>
+                <p>Crispy golden fries made fresh daily.</p>
+                <div class="price">C$240</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="product-card" data-name="Chicken + Fries + Drink Combo" data-price="300">
-        <img src="YOUR_IMAGE_1">
-        <div class="info">
-            <h3>Chicken + Fries + Drink Combo</h3>
-            <p>Crispy chicken + fries + soda</p>
-            <div class="price">C$300</div>
-            <div class="quantity"><button class="minus">−</button><input type="number" min="0" value="0"><button class="plus">+</button></div>
+        <div class="product-card" data-name="Chicken + Fries + Drink Combo" data-price="300">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/images/combo.jpg">
+            <div class="info">
+                <h3>Chicken + Fries + Drink Combo</h3>
+                <p>Crispy chicken + fries + soda</p>
+                <div class="price">C$300</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="product-card" data-name="French Fries Grill Mix" data-price="550">
-        <img src="YOUR_IMAGE_3">
-        <div class="info">
-            <h3>French Fries Grill Mix</h3>
-            <p>Mixed grilled meat + fries</p>
-            <div class="price">C$550</div>
-            <div class="quantity"><button class="minus">−</button><input type="number" min="0" value="0"><button class="plus">+</button></div>
+        <div class="product-card" data-name="French Fries Grill Mix" data-price="550">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/images/grill.jpg">
+            <div class="info">
+                <h3>French Fries Grill Mix</h3>
+                <p>Mixed grilled meat + fries</p>
+                <div class="price">C$550</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
 
+<!-- Name & Address -->
+<div class="order-info">
+    <input id="customerName" placeholder="Your Name">
+    <input id="customerAddress" placeholder="Your Address">
 </div>
+
+<select id="deliverySelect">
+    <option value="0">Pickup (No extra)</option>
+    <option value="20">Delivery +C$20</option>
+</select>
 
 <div id="cartSummary">
     <h4>Cart Summary</h4>
     <div id="cartItems"></div>
     <div style="font-weight:700; margin-top:6px;">Total: C$<span id="cartTotal">0</span></div>
-
-    <select id="deliverySelect">
-        <option value="0">Pickup (No extra)</option>
-        <option value="20">Delivery +C$20</option>
-    </select>
-
-    <input id="customerName" type="text" placeholder="Your Name">
-    <input id="customerAddress" type="text" placeholder="Your Address">
 </div>
 
 <a href="#" id="orderBtn" class="order-btn">Order Now</a>
 
-<footer>📍 Tasbapauni, Nicaragua • Open Everyday 8 AM – 10 PM</footer>
+<footer>📍 Tasbapauni, Nicaragua • Open Everyday 8 AM – 10 PM<br>© 2025 French Fries Bar & Grill</footer>
 
 <script>
-const heroInner=document.getElementById('heroInner');
-let i=0;
-setInterval(()=>heroInner.style.transform=`translateX(-${(i=++i%3)*100}%)`,5000);
+// HERO SLIDER
+const heroInner=document.getElementById("heroInner");
+let heroIndex=0;
+setInterval(()=>{heroIndex=(heroIndex+1)%3;heroInner.style.transform=`translateX(-${heroIndex*100}%)`;},5000);
 
-document.querySelectorAll('.product-card').forEach(p=>{
- const minus=p.querySelector('.minus'), plus=p.querySelector('.plus'), input=p.querySelector('input');
- minus.onclick=()=>{ if(input.value>0) input.value--; updateCart(); }
- plus.onclick=()=>{ input.value++; updateCart(); }
- input.oninput=updateCart;
-});
-
+// CART UPDATE
 function updateCart(){
- let html='', total=parseInt(document.getElementById('deliverySelect').value);
- document.querySelectorAll('.product-card').forEach(p=>{
-   const qty=parseInt(p.querySelector('input').value);
-   if(qty>0){ html+=`<div class="cart-item">${p.dataset.name} x${qty}</div>`; total+=qty*parseInt(p.dataset.price); }
+ let total=parseInt(document.getElementById("deliverySelect").value);
+ let html="";
+ document.querySelectorAll(".product-card").forEach(p=>{
+  const qty=parseInt(p.querySelector("input").value);
+  if(qty>0){
+   const name=p.dataset.name,price=parseInt(p.dataset.price);
+   html+=`<div class="cart-item">${name} x${qty} = C$${price*qty}</div>`;
+   total+=price*qty;
+  }
  });
- document.getElementById('cartItems').innerHTML=html||'No items selected';
- document.getElementById('cartTotal').textContent=total;
+ if(html==="") html="<div>No items selected</div>";
+ document.getElementById("cartItems").innerHTML=html;
+ document.getElementById("cartTotal").textContent=total;
 }
-updateCart();
+document.querySelectorAll("input").forEach(i=>i.addEventListener("input",updateCart));
+document.getElementById("deliverySelect").addEventListener("change",updateCart);
 
-document.getElementById('orderBtn').onclick=()=>{
- const name=document.getElementById('customerName').value.trim();
- const address=document.getElementById('customerAddress').value.trim();
- if(name==''||address==''){ alert("Please enter name and address."); return; }
-
- let msg=`*New Order*%0A👤 ${name}%0A📍 ${address}%0A%0A`;
- document.querySelectorAll('.product-card').forEach(p=>{
-   const qty=parseInt(p.querySelector('input').value);
-   if(qty>0){ msg+=`- ${p.dataset.name} x${qty}%0A`; }
+// SEND ORDER
+document.getElementById("orderBtn").addEventListener("click",()=>{
+ const name=document.getElementById("customerName").value.trim();
+ const address=document.getElementById("customerAddress").value.trim();
+ if(name===""||address===""){alert("Please enter Name & Address.");return;}
+ let msg=`¡Hola! Quiero hacer un pedido:%0A%0A👤 Nombre: ${name}%0A📍 Dirección: ${address}%0A%0A`;
+ document.querySelectorAll(".product-card").forEach(p=>{
+  const qty=parseInt(p.querySelector("input").value);
+  if(qty>0){
+   msg+=`• ${p.dataset.name} x${qty} = C$${p.dataset.price*qty}%0A`;
+  }
  });
- msg+=`%0ADelivery: ${document.getElementById('deliverySelect').selectedOptions[0].text}`;
- msg+=`%0ATotal: C$${document.getElementById('cartTotal').textContent}`;
-
- window.open(`https://wa.me/50585065976?text=${msg}`,'_blank');
-};
+ msg+=`%0A🚚 ${document.getElementById("deliverySelect").options[document.getElementById("deliverySelect").selectedIndex].text}`;
+ msg+=`%0A💵 Total: C$${document.getElementById("cartTotal").textContent}`;
+ window.open(`https://wa.me/50585065976?text=${msg}`,"_blank");
+});
+updateCart();
 </script>
+
 </body>
 </html>
