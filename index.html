@@ -29,20 +29,20 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .quantity button:hover { background:#128C7E; }
 .quantity input { width:50px; text-align:center; padding:4px; border-radius:6px; border:1px solid #ccc; }
 
-/* Cart Summary Panel */
-#cartSummary { position:fixed; top:120px; right:20px; background:white; border-radius:12px; padding:16px; box-shadow:0 4px 15px rgba(0,0,0,0.2); max-width:250px; z-index:1000; font-size:14px; }
+/* Right-side Panel */
+.right-panel { position:fixed; top:120px; right:20px; width:260px; background:white; padding:16px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:1000; font-size:14px; display:flex; flex-direction:column; gap:12px; }
+.right-panel label { font-weight:600; margin-top:6px; display:block; }
+.right-panel input, .right-panel select { width:100%; padding:6px; border-radius:6px; border:1px solid #ccc; }
+#bankInfo { display:none; margin-top:8px; font-size:13px; background:#fff3cd; padding:8px; border-radius:8px; border:1px solid #e0c861; }
+
+/* Cart Summary Panel inside Right Panel */
+#cartSummary { font-size:14px; }
 #cartSummary h4 { margin-top:0; text-align:center; font-weight:700; }
 .cart-item { display:flex; justify-content:space-between; margin-bottom:6px; }
 
-/* Floating Order Button */
-.order-btn { display:block; background:#25D366; text-align:center; color:white; padding:14px 20px; border-radius:50px; font-size:16px; text-decoration:none; font-weight:700; position: fixed; bottom:20px; right:20px; z-index:1000; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease; }
+/* Order Button */
+.order-btn { display:block; background:#25D366; text-align:center; color:white; padding:14px 0; border-radius:50px; font-size:16px; text-decoration:none; font-weight:700; cursor:pointer; transition: transform 0.2s ease; margin-top:10px; }
 .order-btn:hover { transform:scale(1.05); opacity:0.9; }
-
-/* Delivery Selector */
-#deliverySelect { position:fixed; bottom:80px; right:20px; z-index:1000; padding:8px 12px; font-size:14px; border-radius:8px; border:1px solid #ccc; }
-
-/* Customer Info Box */
-.info-box { position:fixed; bottom:140px; right:20px; background:white; padding:12px; border-radius:12px; width:250px; box-shadow:0 4px 10px rgba(0,0,0,0.2); z-index:1000; }
 
 /* Footer */
 footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top:30px; }
@@ -107,47 +107,40 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
     </div>
 </div>
 
-<!-- Delivery / Pickup -->
-<select id="deliverySelect">
-    <option value="0">Pickup (No extra)</option>
-    <option value="20">Delivery +C$20</option>
-</select>
-
-<!-- Customer Fields -->
-<div class="info-box">
-    <label style="font-weight:600;">Nombre</label>
-    <input id="clientName" type="text" placeholder="Tu nombre" style="width:100%; padding:6px; margin-bottom:8px; border-radius:6px; border:1px solid #ccc;">
-
-    <label style="font-weight:600;">Dirección</label>
-    <input id="clientAddress" type="text" placeholder="Barrio / Casa / Referencia" style="width:100%; padding:6px; margin-bottom:8px; border-radius:6px; border:1px solid #ccc;">
-
-    <label style="font-weight:600;">Método de Pago</label>
-    <select id="paymentMethod" style="width:100%; padding:6px; border-radius:6px; border:1px solid #ccc; margin-top:6px;">
-        <option value="delivery">Pagar al entregar</option>
-        <option value="bancentro">Transferencia Bancentro</option>
-    </select>
-
-    <div id="bankInfo" style="display:none; margin-top:8px; font-size:13px; background:#fff3cd; padding:8px; border-radius:8px; border:1px solid #e0c861;">
-        <strong>Banco Bancentro</strong><br>
-        Cuenta: <b>123456789</b><br>
-        Nombre: <b>French Fries Bar & Grill</b><br>
-        <input id="paymentRef" type="text" placeholder="Número de referencia" style="width:100%; padding:6px; margin-top:6px; border-radius:6px; border:1px solid #ccc;">
-    </div>
-</div>
-
-<!-- Cart Summary Panel -->
-<div id="cartSummary">
-    <h4>Cart Summary</h4>
-    <div id="cartItems"></div>
-    <div style="font-weight:700; margin-top:6px;">Total: C$<span id="cartTotal">0</span></div>
-</div>
-
-<a href="#" id="orderBtn" class="order-btn">Order Now</a>
-
 <footer>
 📍 Tasbapauni, Nicaragua • Open Everyday 8 AM – 10 PM<br>
 © 2025 French Fries Bar & Grill
 </footer>
+
+<!-- Right Panel: Customer Info + Cart + Order -->
+<div class="right-panel">
+    <label>Nombre</label>
+    <input id="clientName" type="text" placeholder="Tu nombre">
+
+    <label>Dirección</label>
+    <input id="clientAddress" type="text" placeholder="Barrio / Casa / Referencia">
+
+    <label>Método de Pago</label>
+    <select id="paymentMethod">
+        <option value="delivery">Pagar al entregar</option>
+        <option value="bancentro">Transferencia Bancentro</option>
+    </select>
+
+    <div id="bankInfo">
+        <strong>Banco Bancentro</strong><br>
+        Cuenta: <b>123456789</b><br>
+        Nombre: <b>French Fries Bar & Grill</b><br>
+        <input id="paymentRef" type="text" placeholder="Número de referencia">
+    </div>
+
+    <div id="cartSummary">
+        <h4>Cart Summary</h4>
+        <div id="cartItems"></div>
+        <div style="font-weight:700; margin-top:6px;">Total: C$<span id="cartTotal">0</span></div>
+    </div>
+
+    <a class="order-btn" id="orderBtn">Order Now</a>
+</div>
 
 <script>
 // Hero Carousel
@@ -171,10 +164,9 @@ document.querySelectorAll('.product-card').forEach(card=>{
 function updateCart(){
     const cartItems = document.getElementById('cartItems');
     const cartTotal = document.getElementById('cartTotal');
-    const deliverySelect = document.getElementById('deliverySelect');
-    const deliveryCost = parseInt(deliverySelect.value);
+    const deliverySelect = {value:0}; // delivery now selected inside right-panel
     let html = '';
-    let total = deliveryCost;
+    let total = 0;
     document.querySelectorAll('.product-card').forEach(p=>{
         const qty = parseInt(p.querySelector('input').value);
         if(qty>0){
@@ -188,8 +180,9 @@ function updateCart(){
     cartItems.innerHTML = html;
     cartTotal.textContent = total;
 }
-document.getElementById('deliverySelect').addEventListener('change', updateCart);
 updateCart();
+document.querySelectorAll('.product-card input').forEach(input => input.addEventListener('input', updateCart));
+document.querySelectorAll('.product-card .plus, .product-card .minus').forEach(btn => btn.addEventListener('click', updateCart));
 
 // Show Bancentro Payment Info
 document.getElementById('paymentMethod').addEventListener('change', () => {
@@ -199,36 +192,21 @@ document.getElementById('paymentMethod').addEventListener('change', () => {
 
 // Order Button
 document.getElementById('orderBtn').addEventListener('click', ()=>{
-
     const clientName=document.getElementById('clientName').value.trim();
     const clientAddress=document.getElementById('clientAddress').value.trim();
     const payment=document.getElementById('paymentMethod').value;
     const paymentRef=document.getElementById('paymentRef').value.trim();
-
-    if(clientName===""||clientAddress===""){
-        alert("Por favor ingresa tu nombre y dirección.");
-        return;
-    }
-
-    if(payment==="bancentro" && paymentRef===""){
-        alert("Por favor ingresa el número de referencia del pago.");
-        return;
-    }
-
-    const deliverySelect=document.getElementById('deliverySelect');
-    const deliveryCost=parseInt(deliverySelect.value);
+    if(clientName===""||clientAddress===""){ alert("Por favor ingresa tu nombre y dirección."); return; }
+    if(payment==="bancentro" && paymentRef===""){ alert("Por favor ingresa el número de referencia del pago."); return; }
 
     const products=document.querySelectorAll('.product-card');
     let orderText=`*Nuevo Pedido*%0A%0A*Nombre:* ${clientName}%0A*Dirección:* ${clientAddress}%0A`;
-    
     orderText += `*Pago:* ${payment==="delivery" ? "Pagar al Entregar" : "Transferencia Bancentro"}%0A`;
     if(payment==="bancentro") orderText+=`*Ref:* ${paymentRef}%0A`;
-
     orderText+=`%0A*Pedido:*%0A`;
 
-    let total=deliveryCost;
+    let total=0;
     let anySelected=false;
-
     products.forEach(p=>{
         const qty=parseInt(p.querySelector('input').value);
         if(qty>0){
@@ -239,11 +217,15 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
             total+=price*qty;
         }
     });
-
     if(!anySelected){ alert("Selecciona al menos un producto."); return; }
+    orderText+=`%0A*Total:* C$${total}`;
 
-    orderText+=`%0A*Entrega:* ${deliverySelect.options[deliverySelect.selectedIndex].text}%0A*Total:* C$${total}`;
+    // Copy to clipboard
+    navigator.clipboard.writeText(orderText.replace(/%0A/g,"\n")).then(()=>{
+        alert("Pedido copiado al portapapeles!");
+    });
 
+    // Open WhatsApp
     window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
 });
 </script>
