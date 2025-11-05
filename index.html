@@ -6,64 +6,48 @@
 <title>French Fries Bar & Grill</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body { margin:0; font-family: 'Montserrat', sans-serif; background:#fafafa; color:#222; }
+body { margin:0; font-family:'Montserrat', sans-serif; background:#fafafa; color:#222; }
 header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:center; font-size:28px; font-weight:700; position:sticky; top:0; z-index:1000; }
 
 /* Hero Section */
-.hero { position:relative; height:60vh; display:flex; align-items:center; justify-content:center; color:#fff; font-size:36px; font-weight:700; text-shadow: 1px 1px 12px rgba(0,0,0,0.7); overflow:hidden; }
-.hero::after { content:""; position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)); z-index:0; }
-.hero img { width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; opacity:0; transition: opacity 2s ease-in-out; }
-.hero img.active { opacity:1; z-index:-1; }
-.hero-text { position:relative; z-index:1; text-align:center; padding:0 10px; }
+.hero { position:relative; height:60vh; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.hero-inner { display:flex; transition: transform 0.5s ease-in-out; height:100%; width:300%; }
+.hero-inner img { width:100%; height:100%; object-fit:cover; flex-shrink:0; }
+.hero-text { position:absolute; z-index:2; color:#fff; font-size:36px; font-weight:700; text-align:center; padding:0 20px; text-shadow: 1px 1px 12px rgba(0,0,0,0.7); }
+.hero-text::before { content:""; position:absolute; inset:0; background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.3)); backdrop-filter:blur(4px); border-radius:12px; }
 
 /* Wrapper & Products */
 .wrapper { max-width:1000px; margin:auto; padding:20px; }
 .products-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px; margin-top:20px; }
-.product-card { background:white; border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.12); transition: transform 0.5s ease, opacity 0.5s ease; display:flex; flex-direction:column; position:relative; opacity:0; transform: translateY(50px); cursor:pointer; }
-.product-card.visible { opacity:1; transform: translateY(0); }
+.product-card { background:white; border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; display:flex; flex-direction:column; cursor:pointer; }
+.product-card:hover { transform:translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
 .product-card img { width:100%; height:180px; object-fit:cover; }
 .info { padding:12px; text-align:center; flex-grow:1; }
 .info h3 { margin:0; font-size:18px; font-weight:700; }
 .info p { margin:6px 0; font-size:14px; color:#555; }
 .price { font-size:18px; margin-top:6px; font-weight:700; color:#d62828; }
+.quantity { margin-top:8px; display:flex; justify-content:center; align-items:center; gap:6px; }
+.quantity input { width:50px; text-align:center; padding:4px; border-radius:6px; border:1px solid #ccc; }
 
-/* Order Button */
-.order-btn { display:block; background:#25D366; text-align:center; color:white; padding:12px; margin-top:20px; border-radius:8px; font-size:16px; text-decoration:none; font-weight:700; position: fixed; bottom:10px; right:10px; z-index:1000; }
-.order-btn:hover { opacity:0.85; }
+/* Floating Order Button */
+.order-btn { display:block; background:#25D366; text-align:center; color:white; padding:14px 20px; border-radius:50px; font-size:16px; text-decoration:none; font-weight:700; position: fixed; bottom:20px; right:20px; z-index:1000; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease; }
+.order-btn:hover { transform:scale(1.05); opacity:0.9; }
 
-/* Cart Popup */
-#cartPopup { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; border-radius:10px; width:90%; max-width:400px; max-height:80%; box-shadow:0 6px 16px rgba(0,0,0,0.3); z-index:2000; overflow:hidden; }
-#cartPopup .cart-header { position:sticky; top:0; background:#fff; padding:10px; border-bottom:1px solid #eee; text-align:center; font-weight:700; font-size:18px; }
-#cartList { max-height:250px; overflow-y:auto; padding:10px 0; margin:0; list-style:none; }
-#cartList li { display:flex; align-items:center; padding:6px 10px; border-bottom:1px solid #eee; font-size:14px; }
-#cartList li img { width:50px; height:50px; object-fit:cover; margin-right:10px; border-radius:6px; }
-#cartPopup .cart-footer { position:sticky; bottom:0; background:#fff; padding:10px; border-top:1px solid #eee; text-align:center; }
-#cartPopup .close-btn { display:inline-block; margin:6px; padding:8px 16px; background:#d62828; color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:700; }
-#cartPopup .send-btn { background:#25D366; }
+/* Delivery Selector */
+#deliverySelect { position:fixed; bottom:80px; right:20px; z-index:1000; padding:8px 12px; font-size:14px; border-radius:8px; border:1px solid #ccc; }
 
-/* Modal */
-#productModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:3000; justify-content:center; align-items:center; padding:10px; }
-#productModal .modal-content { background:#fff; max-width:500px; width:100%; border-radius:12px; overflow:hidden; text-align:center; position:relative; padding-bottom:20px; }
-#productModal img { width:100%; object-fit:cover; max-height:250px; }
-#productModal h3 { margin:10px 0 5px; font-size:20px; }
-#productModal p { margin:5px 0 10px; color:#555; font-size:14px; }
-#productModal .modal-price { font-weight:700; font-size:18px; color:#d62828; margin-bottom:10px; }
-#productModal input { width:60px; padding:6px; font-size:16px; text-align:center; border-radius:6px; border:1px solid #ccc; }
-#productModal .add-to-cart { display:block; margin:10px auto; background:#25D366; color:#fff; padding:12px 20px; border-radius:8px; font-weight:700; font-size:16px; border:none; cursor:pointer; }
-#productModal .close-modal { position:absolute; top:10px; right:10px; background:#d62828; color:#fff; border:none; border-radius:6px; padding:6px 10px; cursor:pointer; font-weight:700; }
-
+/* Footer */
 footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top:30px; }
 
 /* Mobile Responsive */
 @media (max-width:600px){
     header { font-size:22px; padding:12px; }
-    .hero { font-size:24px; height:40vh; }
+    .hero-text { font-size:24px; padding:0 10px; }
     .product-card img { height:150px; }
     .info h3 { font-size:16px; }
     .info p { font-size:13px; }
     .price { font-size:16px; }
-    #productModal .modal-price { font-size:16px; }
-    #productModal h3 { font-size:18px; }
+    .quantity input { width:40px; }
 }
 </style>
 </head>
@@ -73,79 +57,62 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 
 <!-- Hero Carousel -->
 <div class="hero" id="hero">
-    <img src="https://github.com/user-attachments/assets/f8114b7f-81c2-4ed7-bbd0-dee562412c96" class="active" alt="Hero 1">
-    <img src="https://github.com/user-attachments/assets/1a76b8c8-e8bc-4968-aba4-b68b14554e9f" alt="Hero 2">
-    <img src="https://github.com/user-attachments/assets/10cc8913-d76a-46aa-8951-8b8b7ad13c1b" alt="Hero 3">
+    <div class="hero-inner" id="heroInner">
+        <img src="https://github.com/user-attachments/assets/f8114b7f-81c2-4ed7-bbd0-dee562412c96" alt="Hero 1">
+        <img src="https://github.com/user-attachments/assets/1a76b8c8-e8bc-4968-aba4-b68b14554e9f" alt="Hero 2">
+        <img src="https://github.com/user-attachments/assets/10cc8913-d76a-46aa-8951-8b8b7ad13c1b" alt="Hero 3">
+    </div>
     <div class="hero-text">Fresh. Local. Made with Love</div>
 </div>
 
 <div class="wrapper">
     <div class="products-grid">
-        <div class="product-card" data-name="6 French Fries Pack" data-price="240" data-img="https://github.com/user-attachments/assets/1a76b8c8-e8bc-4968-aba4-b68b14554e9f" data-desc="Crispy golden fries made fresh daily.">
+        <div class="product-card" data-name="6 French Fries Pack" data-price="240">
             <img src="https://github.com/user-attachments/assets/1a76b8c8-e8bc-4968-aba4-b68b14554e9f" alt="6 French Fries Pack">
             <div class="info">
                 <h3>6 French Fries Pack</h3>
                 <p>Crispy golden fries made fresh daily.</p>
                 <div class="price">C$240</div>
+                <div class="quantity">
+                    <label>Qty:</label>
+                    <input type="number" min="0" value="0">
+                </div>
             </div>
         </div>
-        <div class="product-card" data-name="Chicken + Fries + Drink Combo" data-price="300" data-img="https://github.com/user-attachments/assets/f8114b7f-81c2-4ed7-bbd0-dee562412c96" data-desc="Crispy chicken + fries + soda">
+        <div class="product-card" data-name="Chicken + Fries + Drink Combo" data-price="300">
             <img src="https://github.com/user-attachments/assets/f8114b7f-81c2-4ed7-bbd0-dee562412c96" alt="Chicken + Fries + Drink Combo">
             <div class="info">
                 <h3>Chicken + Fries + Drink Combo</h3>
                 <p>Crispy chicken + fries + soda</p>
                 <div class="price">C$300</div>
+                <div class="quantity">
+                    <label>Qty:</label>
+                    <input type="number" min="0" value="0">
+                </div>
             </div>
         </div>
-        <div class="product-card" data-name="French Fries Grill Mix" data-price="550" data-img="https://github.com/user-attachments/assets/10cc8913-d76a-46aa-8951-8b8b7ad13c1b" data-desc="Mixed grilled meat + fries">
+        <div class="product-card" data-name="French Fries Grill Mix" data-price="550">
             <img src="https://github.com/user-attachments/assets/10cc8913-d76a-46aa-8951-8b8b7ad13c1b" alt="French Fries Grill Mix">
             <div class="info">
                 <h3>French Fries Grill Mix</h3>
                 <p>Mixed grilled meat + fries</p>
                 <div class="price">C$550</div>
+                <div class="quantity">
+                    <label>Qty:</label>
+                    <input type="number" min="0" value="0">
+                </div>
             </div>
         </div>
     </div>
-
-    <div style="text-align:center; margin-top:20px;">
-        <label for="delivery">Choose Option:</label>
-        <select id="delivery">
-            <option value="Pickup">Pickup</option>
-            <option value="Delivery">Delivery (+C$20)</option>
-        </select>
-        <span id="deliveryBadge" style="display:inline-block; padding:4px 10px; border-radius:6px; font-weight:700; margin-left:10px;"></span>
-    </div>
-
-    <div class="total-section" style="margin-top:15px; text-align:center;">
-        Total: C$<span id="total">0</span>
-    </div>
-
-    <a class="order-btn" href="#" id="placeOrder">📦 Review & Place Order on WhatsApp</a>
-
-    <!-- Cart Popup -->
-    <div id="cartPopup">
-        <div class="cart-header">Your Order</div>
-        <ul id="cartList"></ul>
-        <div class="cart-footer">
-            <p style="font-weight:700; margin:5px 0;">Total: C$<span id="cartTotal">0</span></p>
-            <button class="close-btn" id="closeCart">Close</button>
-            <button class="close-btn send-btn" id="sendOrder">Send to WhatsApp</button>
-        </div>
-    </div>
 </div>
 
-<!-- Product Modal -->
-<div id="productModal">
-    <div class="modal-content">
-        <button class="close-modal" id="closeModal">X</button>
-        <img id="modalImg" src="" alt="">
-        <h3 id="modalName"></h3>
-        <p id="modalDesc"></p>
-        <div class="modal-price" id="modalPrice"></div>
-        Quantity: <input type="number" id="modalQty" min="1" value="1">
-        <button class="add-to-cart" id="modalAdd">Add to Cart</button>
-    </div>
-</div>
+<!-- Delivery / Pickup -->
+<select id="deliverySelect">
+    <option value="0">Pickup (No extra)</option>
+    <option value="20">Delivery +C$20</option>
+</select>
+
+<a href="#" id="orderBtn" class="order-btn">Order Now</a>
 
 <footer>
 📍 Tasbapauni, Nicaragua • Open Everyday 8 AM – 10 PM<br>
@@ -154,99 +121,49 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 
 <script>
 // Hero Carousel
-const heroImages = document.querySelectorAll('.hero img');
+const heroInner = document.getElementById('heroInner');
+const heroImagesCount = heroInner.children.length;
 let currentIndex = 0;
-setInterval(() => {
-    heroImages.forEach(img => img.classList.remove('active'));
-    currentIndex = (currentIndex + 1) % heroImages.length;
-    heroImages[currentIndex].classList.add('active');
-}, 5000);
+function slideTo(index){ heroInner.style.transform = `translateX(-${index * 100}%)`; currentIndex = index; }
+setInterval(()=>slideTo((currentIndex+1)%heroImagesCount),5000);
 
-// Product Card Scroll Animation
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting) { entry.target.classList.add('visible'); }
-    });
-}, { threshold: 0.2 });
-document.querySelectorAll('.product-card').forEach(card => observer.observe(card));
-
-// Cart & Order Logic
-const deliverySelect = document.getElementById('delivery');
-const deliveryBadge = document.getElementById('deliveryBadge');
-const deliveryFee = 20;
-const totalEl = document.getElementById('total');
-const quantities = [];
-const placeOrderBtn = document.getElementById('placeOrder');
-const cartPopup = document.getElementById('cartPopup');
-const cartList = document.getElementById('cartList');
-const cartTotal = document.getElementById('cartTotal');
-const closeCart = document.getElementById('closeCart');
-const sendOrder = document.getElementById('sendOrder');
-
-function updateTotal() {
-    let total = 0;
-    quantities.forEach(q => total += q.qty*q.price);
-    if(deliverySelect.value==="Delivery") total += deliveryFee;
-    totalEl.textContent=total;
-    cartTotal.textContent=total;
-    deliveryBadge.textContent=deliverySelect.value==="Pickup"?"Pickup":"Delivery +C$20";
-    deliveryBadge.style.background=deliverySelect.value==="Pickup"?"#28a745":"#d62828";
-    deliveryBadge.style.color="#fff";
-}
-deliverySelect.addEventListener('change', updateTotal);
-
-// Product Modal
-const modal = document.getElementById('productModal');
-const modalImg = document.getElementById('modalImg');
-const modalName = document.getElementById('modalName');
-const modalDesc = document.getElementById('modalDesc');
-const modalPrice = document.getElementById('modalPrice');
-const modalQty = document.getElementById('modalQty');
-const modalAdd = document.getElementById('modalAdd');
-const closeModal = document.getElementById('closeModal');
-
-document.querySelectorAll('.product-card').forEach(card=>{
-    card.addEventListener('click',()=>{
-        modal.style.display='flex';
-        modalImg.src=card.dataset.img;
-        modalName.textContent=card.dataset.name;
-        modalDesc.textContent=card.dataset.desc;
-        modalPrice.textContent=`C$${card.dataset.price}`;
-        modalQty.value=1;
-        modalAdd.dataset.name=card.dataset.name;
-        modalAdd.dataset.price=card.dataset.price;
-        modalAdd.dataset.img=card.dataset.img;
-    });
+let startX=0,endX=0;
+const hero=document.getElementById('hero');
+hero.addEventListener('touchstart', e=> startX=e.touches[0].clientX);
+hero.addEventListener('touchmove', e=> endX=e.touches[0].clientX);
+hero.addEventListener('touchend', ()=>{
+    if(startX-endX>50) slideTo((currentIndex+1)%heroImagesCount);
+    else if(endX-startX>50) slideTo((currentIndex-1+heroImagesCount)%heroImagesCount);
+    startX=0; endX=0;
 });
 
-closeModal.addEventListener('click',()=>modal.style.display='none');
-modalAdd.addEventListener('click',()=>{
-    const existing = quantities.find(q=>q.name===modalAdd.dataset.name);
-    if(existing){ existing.qty+=parseInt(modalQty.value);} 
-    else {quantities.push({name:modalAdd.dataset.name, price:parseInt(modalAdd.dataset.price), img:modalAdd.dataset.img, qty:parseInt(modalQty.value)});}
-    modal.style.display='none';
-    updateTotal();
-});
+// Order Button with selection and quantity
+const orderBtn = document.getElementById('orderBtn');
+orderBtn.addEventListener('click', ()=>{
+    const deliverySelect = document.getElementById('deliverySelect');
+    const deliveryCost = parseInt(deliverySelect.value);
 
-// Place Order
-placeOrderBtn.addEventListener('click',()=>{
-    cartList.innerHTML="";
-    quantities.forEach(q=>{
-        const li=document.createElement('li');
-        li.innerHTML=`<img src="${q.img}" alt="${q.name}"> ${q.qty} x ${q.name} - C$${q.qty*q.price}`;
-        cartList.appendChild(li);
+    const products = document.querySelectorAll('.product-card');
+    let orderText = "¡Hola! Quiero hacer un pedido:%0A";
+    let total = deliveryCost;
+    let anySelected = false;
+
+    products.forEach(p=>{
+        const qty = parseInt(p.querySelector('input').value);
+        if(qty>0){
+            anySelected=true;
+            const name = p.dataset.name;
+            const price = parseInt(p.dataset.price);
+            orderText += `- ${name} x${qty} = C$${price*qty}%0A`;
+            total += price*qty;
+        }
     });
-    cartPopup.style.display='block';
-});
-closeCart.addEventListener('click',()=>cartPopup.style.display='none');
-sendOrder.addEventListener('click',()=>{
-    let orderText='Hola! Quiero hacer el siguiente pedido:%0A';
-    quantities.forEach(q=>{orderText+=`${q.qty} x ${q.name} - C$${q.qty*q.price}%0A`;});
-    if(deliverySelect.value==="Delivery"){orderText+=`Costo de entrega: C$${deliveryFee}%0A`;}
-    orderText+=`Opción: ${deliverySelect.value}%0ATotal: C$${totalEl.textContent}`;
+
+    if(!anySelected){ alert("Por favor, selecciona al menos un producto."); return; }
+
+    orderText += `Entrega: ${deliverySelect.options[deliverySelect.selectedIndex].text}%0ATotal: C$${total}`;
     window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
 });
-updateTotal();
 </script>
 
 </body>
