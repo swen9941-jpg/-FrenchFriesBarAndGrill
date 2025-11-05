@@ -90,6 +90,20 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
                 </div>
             </div>
         </div>
+
+        <div class="product-card" data-name="French Fries Grill Mix" data-price="550">
+            <img src="https://github.com/user-attachments/assets/10cc8913-d76a-46aa-8951-8b8b7ad13c1b" alt="French Fries Grill Mix">
+            <div class="info">
+                <h3>French Fries Grill Mix</h3>
+                <p>Mixed grilled meat + fries</p>
+                <div class="price">C$550</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -106,9 +120,6 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 
     <label style="font-weight:600;">Dirección</label>
     <input id="clientAddress" type="text" placeholder="Barrio / Casa / Referencia" style="width:100%; padding:6px; margin-bottom:8px; border-radius:6px; border:1px solid #ccc;">
-
-    <label style="font-weight:600;">Teléfono</label>
-    <input id="clientPhone" type="text" placeholder="Tu número" style="width:100%; padding:6px; margin-bottom:8px; border-radius:6px; border:1px solid #ccc;">
 
     <label style="font-weight:600;">Método de Pago</label>
     <select id="paymentMethod" style="width:100%; padding:6px; border-radius:6px; border:1px solid #ccc; margin-top:6px;">
@@ -191,7 +202,6 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
 
     const clientName=document.getElementById('clientName').value.trim();
     const clientAddress=document.getElementById('clientAddress').value.trim();
-    const clientPhone=document.getElementById('clientPhone').value.trim();
     const payment=document.getElementById('paymentMethod').value;
     const paymentRef=document.getElementById('paymentRef').value.trim();
 
@@ -199,6 +209,7 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
         alert("Por favor ingresa tu nombre y dirección.");
         return;
     }
+
     if(payment==="bancentro" && paymentRef===""){
         alert("Por favor ingresa el número de referencia del pago.");
         return;
@@ -208,7 +219,13 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
     const deliveryCost=parseInt(deliverySelect.value);
 
     const products=document.querySelectorAll('.product-card');
-    let productsText="";
+    let orderText=`*Nuevo Pedido*%0A%0A*Nombre:* ${clientName}%0A*Dirección:* ${clientAddress}%0A`;
+    
+    orderText += `*Pago:* ${payment==="delivery" ? "Pagar al Entregar" : "Transferencia Bancentro"}%0A`;
+    if(payment==="bancentro") orderText+=`*Ref:* ${paymentRef}%0A`;
+
+    orderText+=`%0A*Pedido:*%0A`;
+
     let total=deliveryCost;
     let anySelected=false;
 
@@ -218,35 +235,14 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
             anySelected=true;
             const name=p.dataset.name;
             const price=parseInt(p.dataset.price);
-            productsText += `${name} x${qty} = C$${price*qty}\n`;
-            total += price*qty;
+            orderText+=`• ${name} x${qty} = C$${price*qty}%0A`;
+            total+=price*qty;
         }
     });
 
     if(!anySelected){ alert("Selecciona al menos un producto."); return; }
 
-    // Send order to Google Sheet (replace YOUR_WEB_APP_URL)
-    fetch('YOUR_WEB_APP_URL', {
-        method:'POST',
-        body: JSON.stringify({
-            name: clientName,
-            address: clientAddress,
-            phone: clientPhone,
-            paymentMethod: payment==="delivery"?"Pagar al Entregar":"Transferencia Bancentro",
-            paymentRef: paymentRef,
-            delivery: deliverySelect.options[deliverySelect.selectedIndex].text,
-            products: productsText,
-            total: total
-        })
-    }).then(res=>{
-        if(res.ok) { alert("Pedido enviado correctamente!"); }
-    });
-
-    // WhatsApp message
-    let orderText=`*Nuevo Pedido*%0A%0A*Nombre:* ${clientName}%0A*Dirección:* ${clientAddress}%0A*Tel:* ${clientPhone}%0A`;
-    orderText += `*Pago:* ${payment==="delivery"?"Pagar al Entregar":"Transferencia Bancentro"}%0A`;
-    if(payment==="bancentro") orderText+=`*Ref:* ${paymentRef}%0A`;
-    orderText+=`%0A*Pedido:*%0A${productsText.replace(/\n/g,"%0A")}%0A*Entrega:* ${deliverySelect.options[deliverySelect.selectedIndex].text}%0A*Total:* C$${total}`;
+    orderText+=`%0A*Entrega:* ${deliverySelect.options[deliverySelect.selectedIndex].text}%0A*Total:* C$${total}`;
 
     window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
 });
