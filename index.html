@@ -19,7 +19,7 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .products-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px; margin-top:20px; }
 .product-card { background:white; border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; display:flex; flex-direction:column; cursor:pointer; }
 .product-card:hover { transform:translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
-.product-card img { width:100%; height:180px; object-fit:cover; }
+.product-card img { width:100%; height:180px; object-fit:cover; flex-shrink:0; }
 .info { padding:12px; text-align:center; flex-grow:1; }
 .info h3 { margin:0; font-size:18px; font-weight:700; }
 .info p { margin:6px 0; font-size:14px; color:#555; }
@@ -29,7 +29,7 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .quantity button:hover { background:#128C7E; }
 .quantity input { width:50px; text-align:center; padding:4px; border-radius:6px; border:1px solid #ccc; }
 
-/* Fixed Bottom Panel */
+/* Fixed Draggable Bottom Panel */
 #orderPanel {
   position: fixed;
   bottom: 0;
@@ -41,6 +41,8 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
   box-shadow: -2px -2px 15px rgba(0,0,0,0.2);
   z-index: 1000;
   font-size:14px;
+  cursor: grab;
+  user-select: none;
 }
 #orderPanel label { font-weight:600; margin-top:8px; display:block; }
 #orderPanel input, #orderPanel select { width:100%; padding:6px; margin-top:4px; border-radius:6px; border:1px solid #ccc; margin-bottom:8px; }
@@ -123,7 +125,7 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 © 2025 French Fries Bar & Grill
 </footer>
 
-<!-- Fixed Bottom Order Panel -->
+<!-- Fixed Draggable Bottom Order Panel -->
 <div id="orderPanel">
     <label>Nombre</label>
     <input id="clientName" type="text" placeholder="Tu nombre">
@@ -238,6 +240,31 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
 
     orderText+=`%0A*Entrega:* ${deliverySelect.options[deliverySelect.selectedIndex].text}%0A*Total:* C$${total}`;
     window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
+});
+
+// Draggable Panel
+const panel = document.getElementById('orderPanel');
+let isDragging = false;
+let startY, startBottom;
+
+panel.addEventListener('mousedown', e=>{
+    isDragging=true;
+    startY=e.clientY;
+    startBottom=parseInt(window.getComputedStyle(panel).bottom);
+    panel.style.cursor='grabbing';
+});
+
+document.addEventListener('mousemove', e=>{
+    if(!isDragging) return;
+    let dy = startY - e.clientY;
+    let newBottom = startBottom + dy;
+    if(newBottom<0) newBottom=0;
+    if(newBottom>window.innerHeight - 100) newBottom=window.innerHeight - 100;
+    panel.style.bottom=newBottom+'px';
+});
+
+document.addEventListener('mouseup', ()=>{
+    if(isDragging){ isDragging=false; panel.style.cursor='grab'; }
 });
 </script>
 
