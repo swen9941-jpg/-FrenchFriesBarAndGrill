@@ -30,7 +30,7 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .quantity input { width:50px; text-align:center; padding:4px; border-radius:6px; border:1px solid #ccc; }
 
 /* Right-side Panel */
-.right-panel { position:fixed; top:120px; right:20px; width:260px; background:white; padding:16px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:1000; font-size:14px; display:flex; flex-direction:column; gap:12px; }
+.right-panel { position:fixed; top:120px; right:20px; width:260px; height:70vh; background:white; padding:16px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:1000; font-size:14px; display:flex; flex-direction:column; gap:12px; overflow-y:auto; }
 .right-panel label { font-weight:600; margin-top:6px; display:block; }
 .right-panel input, .right-panel select { width:100%; padding:6px; border-radius:6px; border:1px solid #ccc; }
 #bankInfo { display:none; margin-top:8px; font-size:13px; background:#fff3cd; padding:8px; border-radius:8px; border:1px solid #e0c861; }
@@ -164,7 +164,6 @@ document.querySelectorAll('.product-card').forEach(card=>{
 function updateCart(){
     const cartItems = document.getElementById('cartItems');
     const cartTotal = document.getElementById('cartTotal');
-    const deliverySelect = {value:0}; // delivery now selected inside right-panel
     let html = '';
     let total = 0;
     document.querySelectorAll('.product-card').forEach(p=>{
