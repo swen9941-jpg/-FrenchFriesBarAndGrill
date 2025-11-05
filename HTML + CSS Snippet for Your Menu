@@ -29,23 +29,17 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .quantity button:hover { background:#128C7E; }
 .quantity input { width:50px; text-align:center; padding:4px; border-radius:6px; border:1px solid #ccc; }
 
-/* Panel at Bottom */
-#bottomPanel { position:fixed; bottom:0; left:0; width:100%; background:white; border-top:2px solid #eee; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; padding:12px 20px; box-shadow:0 -4px 15px rgba(0,0,0,0.15); z-index:1000; }
-#bottomPanel > div { margin:4px; }
-
-/* Delivery Selector */
-#deliverySelect { padding:6px 10px; font-size:14px; border-radius:6px; border:1px solid #ccc; }
-
-/* Customer Info Fields */
-#bottomPanel input, #bottomPanel select { padding:6px; border-radius:6px; border:1px solid #ccc; margin-top:4px; width:100%; }
-
-/* Cart Summary */
-#cartSummary { font-size:14px; }
-#cartSummary h4 { margin:0 0 6px 0; font-weight:700; text-align:center; }
-.cart-item { display:flex; justify-content:space-between; margin-bottom:4px; }
-
-/* Order Button */
-.order-btn { display:block; background:#25D366; text-align:center; color:white; padding:10px 16px; border-radius:50px; font-size:16px; font-weight:700; text-decoration:none; margin-top:6px; transition: transform 0.2s ease; }
+/* Bottom Panel */
+.bottom-panel { position:fixed; bottom:0; left:0; width:100%; background:white; padding:12px 20px; box-shadow:0 -2px 15px rgba(0,0,0,0.2); z-index:1000; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:12px; }
+.customer-info { display:flex; flex-direction:column; gap:6px; flex:1 1 250px; }
+.customer-info label { font-weight:600; font-size:14px; }
+.customer-info input, .customer-info select { padding:6px; border-radius:6px; border:1px solid #ccc; width:100%; }
+#bankInfo { display:none; font-size:13px; background:#fff3cd; padding:8px; border-radius:8px; border:1px solid #e0c861; margin-top:4px; }
+.cart-summary { flex:1 1 200px; font-size:14px; }
+.cart-summary h4 { margin-top:0; font-weight:700; text-align:center; }
+.cart-summary .cart-item { display:flex; justify-content:space-between; margin-bottom:4px; }
+.cart-summary .total { font-weight:700; margin-top:6px; text-align:center; }
+.order-btn { display:block; background:#25D366; text-align:center; color:white; padding:12px 20px; border-radius:50px; font-size:16px; text-decoration:none; font-weight:700; flex:1 1 150px; align-self:center; transition: transform 0.2s ease; }
 .order-btn:hover { transform:scale(1.05); opacity:0.9; }
 
 /* Footer */
@@ -67,69 +61,155 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 
 <div class="wrapper">
     <div class="products-grid">
-        <!-- Existing Products -->
+        <!-- Original Items -->
         <div class="product-card" data-name="6 French Fries Pack" data-price="240">
             <img src="https://github.com/user-attachments/assets/1a76b8c8-e8bc-4968-aba4-b68b14554e9f" alt="6 French Fries Pack">
             <div class="info">
                 <h3>6 French Fries Pack</h3>
                 <p>Crispy golden fries made fresh daily.</p>
                 <div class="price">C$240</div>
-                <div class="quantity"><button class="minus">−</button><input type="number" min="0" value="0"><button class="plus">+</button></div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
             </div>
         </div>
+
         <div class="product-card" data-name="Chicken + Fries + Drink Combo" data-price="300">
             <img src="https://github.com/user-attachments/assets/f8114b7f-81c2-4ed7-bbd0-dee562412c96" alt="Chicken + Fries + Drink Combo">
             <div class="info">
                 <h3>Chicken + Fries + Drink Combo</h3>
                 <p>Crispy chicken + fries + soda</p>
                 <div class="price">C$300</div>
-                <div class="quantity"><button class="minus">−</button><input type="number" min="0" value="0"><button class="plus">+</button></div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
             </div>
         </div>
+
         <div class="product-card" data-name="French Fries Grill Mix" data-price="550">
             <img src="https://github.com/user-attachments/assets/10cc8913-d76a-46aa-8951-8b8b7ad13c1b" alt="French Fries Grill Mix">
             <div class="info">
                 <h3>French Fries Grill Mix</h3>
                 <p>Mixed grilled meat + fries</p>
                 <div class="price">C$550</div>
-                <div class="quantity"><button class="minus">−</button><input type="number" min="0" value="0"><button class="plus">+</button></div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
             </div>
         </div>
 
-        <!-- New Products -->
-        <div class="product-card" data-name="Fried Chicken" data-price="400">
+        <!-- New Items -->
+        <div class="product-card" data-name="Fried Chicken" data-price="150">
             <img src="https://github.com/user-attachments/assets/Copilot_20251105_100505.png" alt="Fried Chicken">
             <div class="info">
                 <h3>Fried Chicken</h3>
-                <p>Crispy fried chicken strips stacked high on a bed of cabbage slaw.</p>
-                <div class="price">C$400</div>
-                <div class="quantity"><button class="minus">−</button><input type="number" min="0" value="0"><button class="plus">+</button></div>
+                <p>Crispy fried chicken strips stacked high.</p>
+                <div class="price">C$150</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
             </div>
         </div>
-        <div class="product-card" data-name="Fresh Salad" data-price="250">
+
+        <div class="product-card" data-name="Fresh Salad" data-price="180">
             <img src="https://github.com/user-attachments/assets/Copilot_20251105_100522.png" alt="Fresh Salad">
             <div class="info">
                 <h3>Fresh Salad</h3>
-                <p>Cabbage, shredded carrots, grilled corn, and mixed greens with dressing.</p>
-                <div class="price">C$250</div>
-                <div class="quantity"><button class="minus">−</button><input type="number" min="0" value="0"><button class="plus">+</button></div>
+                <p>Cabbage salad with carrots and grilled corn.</p>
+                <div class="price">C$180</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
             </div>
         </div>
-        <div class="product-card" data-name="Tajadas" data-price="150">
-            <img src="https://github.com/user-attachments/assets/Copilot_20251105_100533.png" alt="Tajadas">
+
+        <div class="product-card" data-name="Frito Fried Plantain Salad" data-price="200">
+            <img src="https://github.com/user-attachments/assets/Copilot_20251105_100533.png" alt="Frito Fried Plantain Salad">
             <div class="info">
-                <h3>Tajadas</h3>
-                <p>Fried sweet plantains, golden and caramelized.</p>
-                <div class="price">C$150</div>
-                <div class="quantity"><button class="minus">−</button><input type="number" min="0" value="0"><button class="plus">+</button></div>
+                <h3>Frito Fried Plantain Salad</h3>
+                <p>Fried plantain with fresh salad mix.</p>
+                <div class="price">C$200</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
             </div>
         </div>
+
+        <!-- Placeholder Items -->
+        <div class="product-card" data-name="Placeholder Item 1" data-price="100">
+            <img src="https://via.placeholder.com/220x180?text=Item+1" alt="Placeholder 1">
+            <div class="info">
+                <h3>Placeholder Item 1</h3>
+                <p>Sample description.</p>
+                <div class="price">C$100</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="Placeholder Item 2" data-price="120">
+            <img src="https://via.placeholder.com/220x180?text=Item+2" alt="Placeholder 2">
+            <div class="info">
+                <h3>Placeholder Item 2</h3>
+                <p>Sample description.</p>
+                <div class="price">C$120</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="Placeholder Item 3" data-price="130">
+            <img src="https://via.placeholder.com/220x180?text=Item+3" alt="Placeholder 3">
+            <div class="info">
+                <h3>Placeholder Item 3</h3>
+                <p>Sample description.</p>
+                <div class="price">C$130</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="Placeholder Item 4" data-price="140">
+            <img src="https://via.placeholder.com/220x180?text=Item+4" alt="Placeholder 4">
+            <div class="info">
+                <h3>Placeholder Item 4</h3>
+                <p>Sample description.</p>
+                <div class="price">C$140</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<!-- Bottom Panel: Delivery, Customer Info, Cart & Order -->
-<div id="bottomPanel">
-    <div>
+<!-- Bottom Panel -->
+<div class="bottom-panel">
+    <div class="customer-info">
         <label>Nombre</label>
         <input id="clientName" type="text" placeholder="Tu nombre">
         <label>Dirección</label>
@@ -139,7 +219,7 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
             <option value="delivery">Pagar al entregar</option>
             <option value="bancentro">Transferencia Bancentro</option>
         </select>
-        <div id="bankInfo" style="display:none; margin-top:6px; font-size:13px; background:#fff3cd; padding:6px; border-radius:6px; border:1px solid #e0c861;">
+        <div id="bankInfo">
             <strong>Banco Bancentro</strong><br>
             Cuenta: <b>123456789</b><br>
             Nombre: <b>French Fries Bar & Grill</b><br>
@@ -147,17 +227,16 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
         </div>
         <label>Entrega</label>
         <select id="deliverySelect">
-            <option value="0">Pickup (Gratis)</option>
+            <option value="0">Pickup (No extra)</option>
             <option value="20">Delivery +C$20</option>
         </select>
     </div>
-
-    <div id="cartSummary">
+    <div class="cart-summary">
         <h4>Cart Summary</h4>
         <div id="cartItems">No items selected</div>
-        <div style="font-weight:700; margin-top:4px;">Total: C$<span id="cartTotal">0</span></div>
-        <a href="#" id="orderBtn" class="order-btn">Order Now</a>
+        <div class="total">Total: C$<span id="cartTotal">0</span></div>
     </div>
+    <a href="#" id="orderBtn" class="order-btn">Order Now</a>
 </div>
 
 <footer>
@@ -178,8 +257,8 @@ document.querySelectorAll('.product-card').forEach(card=>{
     const minus = card.querySelector('.minus');
     const plus = card.querySelector('.plus');
     const input = card.querySelector('input');
-    minus.addEventListener('click', ()=>{ if(input.value>0) input.value--; updateCart(); });
-    plus.addEventListener('click', ()=>{ input.value++; updateCart(); });
+    minus.addEventListener('click', ()=> { if(input.value>0) input.value--; updateCart(); });
+    plus.addEventListener('click', ()=> { input.value++; updateCart(); });
     input.addEventListener('input', updateCart);
 });
 
@@ -208,9 +287,9 @@ document.getElementById('deliverySelect').addEventListener('change', updateCart)
 updateCart();
 
 // Show Bancentro Payment Info
-document.getElementById('paymentMethod').addEventListener('change', ()=>{
+document.getElementById('paymentMethod').addEventListener('change', () => {
     document.getElementById('bankInfo').style.display =
-        document.getElementById('paymentMethod').value==="bancentro"?"block":"none";
+        document.getElementById('paymentMethod').value === "bancentro" ? "block" : "none";
 });
 
 // Order Button
@@ -219,29 +298,28 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
     const clientAddress=document.getElementById('clientAddress').value.trim();
     const payment=document.getElementById('paymentMethod').value;
     const paymentRef=document.getElementById('paymentRef').value.trim();
-
     if(clientName===""||clientAddress===""){ alert("Por favor ingresa tu nombre y dirección."); return; }
     if(payment==="bancentro" && paymentRef===""){ alert("Por favor ingresa el número de referencia del pago."); return; }
-
     const deliverySelect=document.getElementById('deliverySelect');
     const deliveryCost=parseInt(deliverySelect.value);
-
     const products=document.querySelectorAll('.product-card');
     let orderText=`*Nuevo Pedido*%0A%0A*Nombre:* ${clientName}%0A*Dirección:* ${clientAddress}%0A`;
-    orderText+=`*Pago:* ${payment==="delivery" ? "Pagar al Entregar" : "Transferencia Bancentro"}%0A`;
+    orderText += `*Pago:* ${payment==="delivery" ? "Pagar al Entregar" : "Transferencia Bancentro"}%0A`;
     if(payment==="bancentro") orderText+=`*Ref:* ${paymentRef}%0A`;
     orderText+=`%0A*Pedido:*%0A`;
-
     let total=deliveryCost;
     let anySelected=false;
     products.forEach(p=>{
         const qty=parseInt(p.querySelector('input').value);
-        if(qty>0){ anySelected=true; const name=p.dataset.name; const price=parseInt(p.dataset.price);
-            orderText+=`• ${name} x${qty} = C$${price*qty}%0A`; total+=price*qty;
+        if(qty>0){
+            anySelected=true;
+            const name=p.dataset.name;
+            const price=parseInt(p.dataset.price);
+            orderText+=`• ${name} x${qty} = C$${price*qty}%0A`;
+            total+=price*qty;
         }
     });
     if(!anySelected){ alert("Selecciona al menos un producto."); return; }
-
     orderText+=`%0A*Entrega:* ${deliverySelect.options[deliverySelect.selectedIndex].text}%0A*Total:* C$${total}`;
     window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
 });
@@ -249,4 +327,3 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
 
 </body>
 </html>
-
