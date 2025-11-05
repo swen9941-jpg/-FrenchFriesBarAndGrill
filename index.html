@@ -13,8 +13,6 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .hero { position:relative; height:60vh; overflow:hidden; display:flex; align-items:center; justify-content:center; }
 .hero-inner { display:flex; transition: transform 0.5s ease-in-out; height:100%; width:300%; }
 .hero-inner img { width:100%; height:100%; object-fit:cover; flex-shrink:0; }
-.hero-text { position:absolute; z-index:2; color:#fff; font-size:36px; font-weight:700; text-align:center; padding:0 20px; text-shadow: 1px 1px 12px rgba(0,0,0,0.7); }
-.hero-text::before { content:""; position:absolute; inset:0; background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.3)); backdrop-filter:blur(4px); border-radius:12px; }
 
 /* Wrapper & Products */
 .wrapper { max-width:1000px; margin:auto; padding:20px; }
@@ -27,7 +25,14 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .info p { margin:6px 0; font-size:14px; color:#555; }
 .price { font-size:18px; margin-top:6px; font-weight:700; color:#d62828; }
 .quantity { margin-top:8px; display:flex; justify-content:center; align-items:center; gap:6px; }
+.quantity button { padding:4px 10px; font-weight:700; font-size:16px; border:none; background:#25D366; color:white; border-radius:6px; cursor:pointer; transition: 0.2s; }
+.quantity button:hover { background:#128C7E; }
 .quantity input { width:50px; text-align:center; padding:4px; border-radius:6px; border:1px solid #ccc; }
+
+/* Cart Summary Panel */
+#cartSummary { position:fixed; top:120px; right:20px; background:white; border-radius:12px; padding:16px; box-shadow:0 4px 15px rgba(0,0,0,0.2); max-width:250px; z-index:1000; font-size:14px; }
+#cartSummary h4 { margin-top:0; text-align:center; font-weight:700; }
+.cart-item { display:flex; justify-content:space-between; margin-bottom:6px; }
 
 /* Floating Order Button */
 .order-btn { display:block; background:#25D366; text-align:center; color:white; padding:14px 20px; border-radius:50px; font-size:16px; text-decoration:none; font-weight:700; position: fixed; bottom:20px; right:20px; z-index:1000; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease; }
@@ -42,12 +47,12 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 /* Mobile Responsive */
 @media (max-width:600px){
     header { font-size:22px; padding:12px; }
-    .hero-text { font-size:24px; padding:0 10px; }
     .product-card img { height:150px; }
     .info h3 { font-size:16px; }
     .info p { font-size:13px; }
     .price { font-size:16px; }
     .quantity input { width:40px; }
+    #cartSummary { top:100px; right:10px; max-width:200px; }
 }
 </style>
 </head>
@@ -62,7 +67,6 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
         <img src="https://github.com/user-attachments/assets/1a76b8c8-e8bc-4968-aba4-b68b14554e9f" alt="Hero 2">
         <img src="https://github.com/user-attachments/assets/10cc8913-d76a-46aa-8951-8b8b7ad13c1b" alt="Hero 3">
     </div>
-    <div class="hero-text">Fresh. Local. Made with Love</div>
 </div>
 
 <div class="wrapper">
@@ -74,8 +78,9 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
                 <p>Crispy golden fries made fresh daily.</p>
                 <div class="price">C$240</div>
                 <div class="quantity">
-                    <label>Qty:</label>
+                    <button class="minus">−</button>
                     <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
                 </div>
             </div>
         </div>
@@ -86,8 +91,9 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
                 <p>Crispy chicken + fries + soda</p>
                 <div class="price">C$300</div>
                 <div class="quantity">
-                    <label>Qty:</label>
+                    <button class="minus">−</button>
                     <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
                 </div>
             </div>
         </div>
@@ -98,8 +104,9 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
                 <p>Mixed grilled meat + fries</p>
                 <div class="price">C$550</div>
                 <div class="quantity">
-                    <label>Qty:</label>
+                    <button class="minus">−</button>
                     <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
                 </div>
             </div>
         </div>
@@ -111,6 +118,13 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
     <option value="0">Pickup (No extra)</option>
     <option value="20">Delivery +C$20</option>
 </select>
+
+<!-- Cart Summary Panel -->
+<div id="cartSummary">
+    <h4>Cart Summary</h4>
+    <div id="cartItems"></div>
+    <div style="font-weight:700; margin-top:6px;">Total: C$<span id="cartTotal">0</span></div>
+</div>
 
 <a href="#" id="orderBtn" class="order-btn">Order Now</a>
 
@@ -124,7 +138,7 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 const heroInner = document.getElementById('heroInner');
 const heroImagesCount = heroInner.children.length;
 let currentIndex = 0;
-function slideTo(index){ heroInner.style.transform = `translateX(-${index * 100}%)`; currentIndex = index; }
+function slideTo(index){ heroInner.style.transform = `translateX(-${index * 100}%)`; currentIndex=index; }
 setInterval(()=>slideTo((currentIndex+1)%heroImagesCount),5000);
 
 let startX=0,endX=0;
@@ -137,23 +151,56 @@ hero.addEventListener('touchend', ()=>{
     startX=0; endX=0;
 });
 
-// Order Button with selection and quantity
-const orderBtn = document.getElementById('orderBtn');
-orderBtn.addEventListener('click', ()=>{
+// Quantity Buttons
+document.querySelectorAll('.product-card').forEach(card=>{
+    const minus = card.querySelector('.minus');
+    const plus = card.querySelector('.plus');
+    const input = card.querySelector('input');
+    minus.addEventListener('click', ()=> { if(input.value>0) input.value--; updateCart(); });
+    plus.addEventListener('click', ()=> { input.value++; updateCart(); });
+    input.addEventListener('input', updateCart);
+});
+
+// Update Cart Summary
+function updateCart(){
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
     const deliverySelect = document.getElementById('deliverySelect');
     const deliveryCost = parseInt(deliverySelect.value);
-
-    const products = document.querySelectorAll('.product-card');
-    let orderText = "¡Hola! Quiero hacer un pedido:%0A";
+    let html = '';
     let total = deliveryCost;
-    let anySelected = false;
-
-    products.forEach(p=>{
+    document.querySelectorAll('.product-card').forEach(p=>{
         const qty = parseInt(p.querySelector('input').value);
         if(qty>0){
-            anySelected=true;
             const name = p.dataset.name;
             const price = parseInt(p.dataset.price);
+            html += `<div class="cart-item">${name} x${qty} = C$${price*qty}</div>`;
+            total += price*qty;
+        }
+    });
+    if(html==='') html='<div>No items selected</div>';
+    cartItems.innerHTML = html;
+    cartTotal.textContent = total;
+}
+document.getElementById('deliverySelect').addEventListener('change', updateCart);
+updateCart();
+
+// Order Button
+document.getElementById('orderBtn').addEventListener('click', ()=>{
+    const deliverySelect=document.getElementById('deliverySelect');
+    const deliveryCost=parseInt(deliverySelect.value);
+
+    const products=document.querySelectorAll('.product-card');
+    let orderText="¡Hola! Quiero hacer un pedido:%0A";
+    let total=deliveryCost;
+    let anySelected=false;
+
+    products.forEach(p=>{
+        const qty=parseInt(p.querySelector('input').value);
+        if(qty>0){
+            anySelected=true;
+            const name=p.dataset.name;
+            const price=parseInt(p.dataset.price);
             orderText += `- ${name} x${qty} = C$${price*qty}%0A`;
             total += price*qty;
         }
