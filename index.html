@@ -29,22 +29,13 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 .quantity button:hover { background:#128C7E; }
 .quantity input { width:50px; text-align:center; padding:4px; border-radius:6px; border:1px solid #ccc; }
 
-/* Order Panel at bottom of page */
-#orderPanel {
-  background: white;
-  padding: 16px;
-  border-top-left-radius:12px;
-  border-top-right-radius:12px;
-  box-shadow:0 -2px 15px rgba(0,0,0,0.15);
-  max-width:1000px;
-  margin:20px auto 0 auto;
-  font-size:14px;
-}
+/* Order Panel */
+#orderPanel { background: white; padding: 16px; border-top-left-radius:12px; border-top-right-radius:12px; box-shadow:0 -2px 15px rgba(0,0,0,0.15); max-width:1000px; margin:20px auto 0 auto; font-size:14px; }
 #orderPanel label { font-weight:600; margin-top:8px; display:block; }
 #orderPanel input, #orderPanel select { width:100%; padding:6px; margin-top:4px; border-radius:6px; border:1px solid #ccc; margin-bottom:8px; }
 #bankInfo { display:none; margin-top:8px; font-size:13px; background:#fff3cd; padding:8px; border-radius:8px; border:1px solid #e0c861; }
 
-/* Cart Summary inside panel */
+/* Cart Summary */
 #cartItems { max-height:150px; overflow-y:auto; margin-bottom:6px; }
 #cartItems .cart-item { display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px; }
 #cartTotal { font-weight:700; color:#d62828; }
@@ -71,52 +62,12 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 </div>
 
 <div class="wrapper">
-    <div class="products-grid">
-        <div class="product-card" data-name="6 French Fries Pack" data-price="240">
-            <img src="https://github.com/user-attachments/assets/1a76b8c8-e8bc-4968-aba4-b68b14554e9f" alt="6 French Fries Pack">
-            <div class="info">
-                <h3>6 French Fries Pack</h3>
-                <p>Crispy golden fries made fresh daily.</p>
-                <div class="price">C$240</div>
-                <div class="quantity">
-                    <button class="minus">−</button>
-                    <input type="number" min="0" value="0">
-                    <button class="plus">+</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card" data-name="Chicken + Fries + Drink Combo" data-price="300">
-            <img src="https://github.com/user-attachments/assets/f8114b7f-81c2-4ed7-bbd0-dee562412c96" alt="Chicken + Fries + Drink Combo">
-            <div class="info">
-                <h3>Chicken + Fries + Drink Combo</h3>
-                <p>Crispy chicken + fries + soda</p>
-                <div class="price">C$300</div>
-                <div class="quantity">
-                    <button class="minus">−</button>
-                    <input type="number" min="0" value="0">
-                    <button class="plus">+</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card" data-name="French Fries Grill Mix" data-price="550">
-            <img src="https://github.com/user-attachments/assets/10cc8913-d76a-46aa-8951-8b8b7ad13c1b" alt="French Fries Grill Mix">
-            <div class="info">
-                <h3>French Fries Grill Mix</h3>
-                <p>Mixed grilled meat + fries</p>
-                <div class="price">C$550</div>
-                <div class="quantity">
-                    <button class="minus">−</button>
-                    <input type="number" min="0" value="0">
-                    <button class="plus">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="products-grid" id="productsGrid">
+    <!-- Products will load dynamically from products.json -->
+  </div>
 </div>
 
-<!-- Order Panel at bottom -->
+<!-- Order Panel -->
 <div id="orderPanel">
     <label>Nombre</label>
     <input id="clientName" type="text" placeholder="Tu nombre">
@@ -162,17 +113,7 @@ let currentIndex = 0;
 function slideTo(index){ heroInner.style.transform = `translateX(-${index * 100}%)`; currentIndex=index; }
 setInterval(()=>slideTo((currentIndex+1)%heroImagesCount),5000);
 
-// Quantity Buttons
-document.querySelectorAll('.product-card').forEach(card=>{
-    const minus = card.querySelector('.minus');
-    const plus = card.querySelector('.plus');
-    const input = card.querySelector('input');
-    minus.addEventListener('click', ()=> { if(input.value>0) input.value--; updateCart(); });
-    plus.addEventListener('click', ()=> { input.value++; updateCart(); });
-    input.addEventListener('input', updateCart);
-});
-
-// Update Cart Summary
+// Cart update
 function updateCart(){
     const cartItems = document.getElementById('cartItems');
     const cartTotal = document.getElementById('cartTotal');
@@ -194,15 +135,14 @@ function updateCart(){
     cartTotal.textContent = total;
 }
 document.getElementById('deliverySelect').addEventListener('change', updateCart);
-updateCart();
 
-// Show Bancentro Payment Info
+// Payment method toggle
 document.getElementById('paymentMethod').addEventListener('change', () => {
     document.getElementById('bankInfo').style.display =
         document.getElementById('paymentMethod').value === "bancentro" ? "block" : "none";
 });
 
-// Order Button
+// Order button
 document.getElementById('orderBtn').addEventListener('click', ()=>{
     const clientName=document.getElementById('clientName').value.trim();
     const clientAddress=document.getElementById('clientAddress').value.trim();
@@ -237,6 +177,46 @@ document.getElementById('orderBtn').addEventListener('click', ()=>{
     orderText+=`%0A*Entrega:* ${deliverySelect.options[deliverySelect.selectedIndex].text}%0A*Total:* C$${total}`;
     window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
 });
+
+// Load products dynamically from products.json
+async function loadProducts() {
+    const res = await fetch('products.json');
+    const products = await res.json();
+    const grid = document.getElementById('productsGrid');
+    grid.innerHTML = '';
+
+    products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.dataset.name = p.name;
+        card.dataset.price = p.price;
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <div class="info">
+            <h3>${p.name}</h3>
+            <p>${p.desc}</p>
+            <div class="price">C$${p.price}</div>
+            <div class="quantity">
+              <button class="minus">−</button>
+              <input type="number" min="0" value="0">
+              <button class="plus">+</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+
+        const minus = card.querySelector('.minus');
+        const plus = card.querySelector('.plus');
+        const input = card.querySelector('input');
+        minus.addEventListener('click', () => { if(input.value>0) input.value--; updateCart(); });
+        plus.addEventListener('click', () => { input.value++; updateCart(); });
+        input.addEventListener('input', updateCart);
+    });
+
+    updateCart();
+}
+
+loadProducts();
 </script>
 
 </body>
