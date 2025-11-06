@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Classic French Fries",
+    "price": 220,
+    "img": "https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/french-fries.png",
+    "desc": "Crispy golden fries made fresh daily."
+  },
+  {
+    "name": "Combo #8 – Fries + Drink",
+    "price": 300,
+    "img": "https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/Combo8.png",
+    "desc": "Crispy chicken + fries + soda"
+  },
+  {
+    "name": "Family Combo Box",
+    "price": 450,
+    "img": "https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/combo10.png",
+    "desc": "Perfect for the whole family!"
+  },
+  {
+    "name": "Chicken & Fries Special",
+    "price": 500,
+    "img": "https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/image_Pippit_202507111556%20(1).jpg",
+    "desc": "Grilled chicken with golden fries."
+  },
+  {
+    "name": "Grill Master Burger",
+    "price": 600,
+    "img": "https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/ChatGPT%20Image%20Aug%2010,%202025,%2007_14_38%20AM.png",
+    "desc": "Juicy burger with grilled toppings."
+  },
+  {
+    "name": "Double Cheese Smash Burger",
+    "price": 700,
+    "img": "https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/ChatGPT%20Image%20Aug%2010,%202025,%2007_45_18%20AM.png",
+    "desc": "Two patties, double cheese, double yum."
+  },
+  {
+    "name": "Loaded BBQ Fries",
+    "price": 800,
+    "img": "https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/Copilot_20251105_100505.png",
+    "desc": "Fries topped with BBQ sauce and cheese."
+  },
+  {
+    "name": "Chicken Wings Bucket",
+    "price": 1000,
+    "img": "https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/Copilot_20251105_100522.png",
+    "desc": "A bucket full of crispy chicken wings."
+  },
+  {
+    "name": "Deluxe Mega Feast",
+    "price": 1500,
+    "img": "https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/Copilot_20251105_100533.png",
+    "desc": "The ultimate combo for feast lovers."
+  }
+]
