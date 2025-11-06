@@ -39,8 +39,6 @@ header { background:rgba(0,0,0,0.6); color:white; padding:16px 20px; text-align:
 #cartTotal { font-weight:700; color:#d62828; }
 #orderBtn { display:block; background:#25D366; text-align:center; color:white; padding:12px; border-radius:8px; font-size:16px; font-weight:700; cursor:pointer; margin-top:8px; text-decoration:none; }
 #orderBtn:hover { background:#128C7E; }
-
-/* Footer */
 footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top:20px; }
 </style>
 </head>
@@ -48,163 +46,172 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 
 <header>🍟 French Fries Bar & Grill — Tasbapauni</header>
 
-<!-- Hero -->
+<!-- Hero Carousel -->
 <div class="hero">
-  <div class="hero-inner">
-    <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/ChatGPT%20Image%20Aug%2010%2C%202025%2C%2007_14_38%20AM.png" alt="Hero 1">
-    <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/ChatGPT%20Image%20Aug%2010%2C%202025%2C%2007_45_18%20AM.png" alt="Hero 2">
-    <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/Copilot_20251105_100505.png" alt="Hero 3">
-  </div>
+    <div class="hero-inner" id="heroInner">
+        <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/french-fries.png" alt="Hero 1">
+        <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/Combo8.png" alt="Hero 2">
+        <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/combo10.png" alt="Hero 3">
+    </div>
 </div>
 
 <div class="wrapper">
-  <div class="products-grid">
+    <div class="products-grid">
 
-    <div class="product-card" data-name="Classic French Fries" data-price="220">
-      <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/french-fries.png" alt="Classic French Fries">
-      <div class="info">
-        <h3>Classic French Fries</h3>
-        <div class="price">C$220</div>
-        <div class="quantity">
-          <button class="minus">−</button>
-          <input type="number" min="0" value="0">
-          <button class="plus">+</button>
+        <div class="product-card" data-name="Classic French Fries" data-price="220">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/french-fries.png" alt="Classic French Fries">
+            <div class="info">
+                <h3>Classic French Fries</h3>
+                <p>Crispy golden fries made fresh daily.</p>
+                <div class="price">C$220</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="product-card" data-name="Combo #8 – Fries + Drink" data-price="300">
-      <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/Combo8.png" alt="Combo #8 – Fries + Drink">
-      <div class="info">
-        <h3>Combo #8 – Fries + Drink</h3>
-        <div class="price">C$300</div>
-        <div class="quantity">
-          <button class="minus">−</button>
-          <input type="number" min="0" value="0">
-          <button class="plus">+</button>
+        <div class="product-card" data-name="Combo #8 – Fries + Drink" data-price="300">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/Combo8.png" alt="Combo #8 – Fries + Drink">
+            <div class="info">
+                <h3>Combo #8 – Fries + Drink</h3>
+                <p>Crispy chicken + fries + soda</p>
+                <div class="price">C$300</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="product-card" data-name="Family Combo Box" data-price="450">
-      <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/combo10.png" alt="Family Combo Box">
-      <div class="info">
-        <h3>Family Combo Box</h3>
-        <div class="price">C$450</div>
-        <div class="quantity">
-          <button class="minus">−</button>
-          <input type="number" min="0" value="0">
-          <button class="plus">+</button>
+        <div class="product-card" data-name="Family Combo Box" data-price="450">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/combo10.png" alt="Family Combo Box">
+            <div class="info">
+                <h3>Family Combo Box</h3>
+                <p>Mixed items for the whole family.</p>
+                <div class="price">C$450</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="product-card" data-name="Chicken & Fries Special" data-price="500">
-      <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/image_Pippit_202507111556%20(1).jpg" alt="Chicken & Fries Special">
-      <div class="info">
-        <h3>Chicken & Fries Special</h3>
-        <div class="price">C$500</div>
-        <div class="quantity">
-          <button class="minus">−</button>
-          <input type="number" min="0" value="0">
-          <button class="plus">+</button>
+        <div class="product-card" data-name="Chicken & Fries Special" data-price="500">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/image_Pippit_202507111556%20(1).jpg" alt="Chicken & Fries Special">
+            <div class="info">
+                <h3>Chicken & Fries Special</h3>
+                <p>Delicious chicken served with fries.</p>
+                <div class="price">C$500</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="product-card" data-name="Grill Master Burger" data-price="600">
-      <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/ChatGPT%20Image%20Aug%2010%2C%202025%2C%2007_14_38%20AM.png" alt="Grill Master Burger">
-      <div class="info">
-        <h3>Grill Master Burger</h3>
-        <div class="price">C$600</div>
-        <div class="quantity">
-          <button class="minus">−</button>
-          <input type="number" min="0" value="0">
-          <button class="plus">+</button>
+        <div class="product-card" data-name="Grill Master Burger" data-price="600">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/ChatGPT%20Image%20Aug%2010,%202025,%2007_14_38%20AM.png" alt="Grill Master Burger">
+            <div class="info">
+                <h3>Grill Master Burger</h3>
+                <p>Juicy burger with special grill sauce.</p>
+                <div class="price">C$600</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="product-card" data-name="French Fries Grill Mix" data-price="550">
-      <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/Copilot_20251105_100505.png" alt="French Fries Grill Mix">
-      <div class="info">
-        <h3>French Fries Grill Mix</h3>
-        <div class="price">C$550</div>
-        <div class="quantity">
-          <button class="minus">−</button>
-          <input type="number" min="0" value="0">
-          <button class="plus">+</button>
+        <div class="product-card" data-name="Double Cheese Smash Burger" data-price="700">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/ChatGPT%20Image%20Aug%2010,%202025,%2007_45_18%20AM.png" alt="Double Cheese Smash Burger">
+            <div class="info">
+                <h3>Double Cheese Smash Burger</h3>
+                <p>Extra cheesy burger smash.</p>
+                <div class="price">C$700</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="product-card" data-name="6 French Fries Pack" data-price="240">
-      <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/6fries.png" alt="6 French Fries Pack">
-      <div class="info">
-        <h3>6 French Fries Pack</h3>
-        <div class="price">C$240</div>
-        <div class="quantity">
-          <button class="minus">−</button>
-          <input type="number" min="0" value="0">
-          <button class="plus">+</button>
+        <div class="product-card" data-name="Loaded BBQ Fries" data-price="320">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/ChatGPT%20Image%20Aug%2010,%202025,%2007_52_01%20AM.png" alt="Loaded BBQ Fries">
+            <div class="info">
+                <h3>Loaded BBQ Fries</h3>
+                <p>Fries with BBQ sauce and toppings.</p>
+                <div class="price">C$320</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="product-card" data-name="Chicken + Fries + Drink Combo" data-price="300">
-      <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/ComboChicken.png" alt="Chicken + Fries + Drink Combo">
-      <div class="info">
-        <h3>Chicken + Fries + Drink Combo</h3>
-        <div class="price">C$300</div>
-        <div class="quantity">
-          <button class="minus">−</button>
-          <input type="number" min="0" value="0">
-          <button class="plus">+</button>
+        <div class="product-card" data-name="Sweet Potato Fries" data-price="280">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/ChatGPT%20Image%20Aug%2010,%202025,%2008_00_10%20AM.png" alt="Sweet Potato Fries">
+            <div class="info">
+                <h3>Sweet Potato Fries</h3>
+                <p>Delicious sweet potato fries.</p>
+                <div class="price">C$280</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="product-card" data-name="Double Cheese Fries" data-price="280">
-      <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/CheeseFries.png" alt="Double Cheese Fries">
-      <div class="info">
-        <h3>Double Cheese Fries</h3>
-        <div class="price">C$280</div>
-        <div class="quantity">
-          <button class="minus">−</button>
-          <input type="number" min="0" value="0">
-          <button class="plus">+</button>
+        <div class="product-card" data-name="Fiesta Combo Pack" data-price="900">
+            <img src="https://raw.githubusercontent.com/swen9941-jpg/-FrenchFriesBarAndGrill/main/ChatGPT%20Image%20Aug%2010,%202025,%2008_12_34%20AM.png" alt="Fiesta Combo Pack">
+            <div class="info">
+                <h3>Fiesta Combo Pack</h3>
+                <p>Perfect combo for parties.</p>
+                <div class="price">C$900</div>
+                <div class="quantity">
+                    <button class="minus">−</button>
+                    <input type="number" min="0" value="0">
+                    <button class="plus">+</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-  </div>
+    </div>
 </div>
 
 <!-- Order Panel -->
 <div id="orderPanel">
-  <label>Nombre</label>
-  <input id="clientName" type="text" placeholder="Tu nombre">
-  <label>Dirección</label>
-  <input id="clientAddress" type="text" placeholder="Barrio / Casa / Referencia">
-  <label>Método de Pago</label>
-  <select id="paymentMethod">
-    <option value="delivery">Pagar al entregar</option>
-    <option value="bancentro">Transferencia Bancentro</option>
-  </select>
-  <div id="bankInfo">
-    <strong>Banco Bancentro</strong><br>
-    Cuenta: <b>123456789</b><br>
-    Nombre: <b>French Fries Bar & Grill</b><br>
-    <input id="paymentRef" type="text" placeholder="Número de referencia">
-  </div>
-  <label>Entrega</label>
-  <select id="deliverySelect">
-    <option value="0">Pickup (Gratis)</option>
-    <option value="20">Delivery +C$20</option>
-  </select>
-  <div id="cartItems">No items selected</div>
-  <div style="font-weight:700; margin-bottom:6px;">Total: C$<span id="cartTotal">0</span></div>
-  <a href="#" id="orderBtn">Order Now</a>
+    <label>Nombre</label>
+    <input id="clientName" type="text" placeholder="Tu nombre">
+    <label>Dirección</label>
+    <input id="clientAddress" type="text" placeholder="Barrio / Casa / Referencia">
+    <label>Método de Pago</label>
+    <select id="paymentMethod">
+        <option value="delivery">Pagar al entregar</option>
+        <option value="bancentro">Transferencia Bancentro</option>
+    </select>
+    <div id="bankInfo">
+        <strong>Banco Bancentro</strong><br>
+        Cuenta: <b>123456789</b><br>
+        Nombre: <b>French Fries Bar & Grill</b><br>
+        <input id="paymentRef" type="text" placeholder="Número de referencia">
+    </div>
+    <label>Entrega</label>
+    <select id="deliverySelect">
+        <option value="0">Pickup (Gratis)</option>
+        <option value="20">Delivery +C$20</option>
+    </select>
+    <div id="cartItems">No items selected</div>
+    <div style="font-weight:700; margin-bottom:6px;">Total: C$<span id="cartTotal">0</span></div>
+    <a href="#" id="orderBtn">Order Now</a>
 </div>
 
 <footer>
@@ -214,78 +221,86 @@ footer { text-align:center; padding:20px; font-size:14px; color:#555; margin-top
 
 <script>
 // Hero Carousel
-const heroInner = document.querySelector('.hero-inner');
+const heroInner = document.getElementById('heroInner');
 const heroImagesCount = heroInner.children.length;
 let currentIndex = 0;
-setInterval(()=>{ currentIndex=(currentIndex+1)%heroImagesCount; heroInner.style.transform=`translateX(-${currentIndex*100}%)`; },5000);
+function slideTo(index){ heroInner.style.transform = `translateX(-${index * 100}%)`; currentIndex=index; }
+setInterval(()=>slideTo((currentIndex+1)%heroImagesCount),5000);
 
 // Quantity Buttons
 document.querySelectorAll('.product-card').forEach(card=>{
-  const minus=card.querySelector('.minus');
-  const plus=card.querySelector('.plus');
-  const input=card.querySelector('input');
-  minus.addEventListener('click',()=>{ if(input.value>0) input.value--; updateCart(); });
-  plus.addEventListener('click',()=>{ input.value++; updateCart(); });
-  input.addEventListener('input', updateCart);
+    const minus = card.querySelector('.minus');
+    const plus = card.querySelector('.plus');
+    const input = card.querySelector('input');
+    minus.addEventListener('click', ()=> { if(input.value>0) input.value--; updateCart(); });
+    plus.addEventListener('click', ()=> { input.value++; updateCart(); });
+    input.addEventListener('input', updateCart);
 });
 
-// Update Cart
+// Update Cart Summary
 function updateCart(){
-  const cartItems=document.getElementById('cartItems');
-  const cartTotal=document.getElementById('cartTotal');
-  const deliveryCost=parseInt(document.getElementById('deliverySelect').value);
-  let html='',total=deliveryCost;
-  let any=false;
-  document.querySelectorAll('.product-card').forEach(p=>{
-    const qty=parseInt(p.querySelector('input').value);
-    if(qty>0){ any=true;
-      const name=p.dataset.name;
-      const price=parseInt(p.dataset.price);
-      html+=`<div class="cart-item">${name} x${qty} = C$${price*qty}</div>`;
-      total+=price*qty;
-    }
-  });
-  if(!any) html='<div>No items selected</div>';
-  cartItems.innerHTML=html;
-  cartTotal.textContent=total;
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const deliverySelect = document.getElementById('deliverySelect');
+    const deliveryCost = parseInt(deliverySelect.value);
+    let html = '';
+    let total = deliveryCost;
+    document.querySelectorAll('.product-card').forEach(p=>{
+        const qty = parseInt(p.querySelector('input').value);
+        if(qty>0){
+            const name = p.dataset.name;
+            const price = parseInt(p.dataset.price);
+            html += `<div class="cart-item">${name} x${qty} = C$${price*qty}</div>`;
+            total += price*qty;
+        }
+    });
+    if(html==='') html='<div>No items selected</div>';
+    cartItems.innerHTML = html;
+    cartTotal.textContent = total;
 }
 document.getElementById('deliverySelect').addEventListener('change', updateCart);
 updateCart();
 
-// Show Bancentro
-document.getElementById('paymentMethod').addEventListener('change',()=>{
-  document.getElementById('bankInfo').style.display=document.getElementById('paymentMethod').value==='bancentro'?'block':'none';
+// Show Bancentro Payment Info
+document.getElementById('paymentMethod').addEventListener('change', () => {
+    document.getElementById('bankInfo').style.display =
+        document.getElementById('paymentMethod').value === "bancentro" ? "block" : "none";
 });
 
 // Order Button
-document.getElementById('orderBtn').addEventListener('click',()=>{
-  const clientName=document.getElementById('clientName').value.trim();
-  const clientAddress=document.getElementById('clientAddress').value.trim();
-  const payment=document.getElementById('paymentMethod').value;
-  const paymentRef=document.getElementById('paymentRef').value.trim();
-  if(clientName===""||clientAddress===""){ alert("Por favor ingresa tu nombre y dirección."); return; }
-  if(payment==="bancentro" && paymentRef===""){ alert("Por favor ingresa el número de referencia del pago."); return; }
-  const deliverySelect=document.getElementById('deliverySelect');
-  const deliveryCost=parseInt(deliverySelect.value);
-  const products=document.querySelectorAll('.product-card');
-  let orderText=`*Nuevo Pedido*%0A%0A*Nombre:* ${clientName}%0A*Dirección:* ${clientAddress}%0A`;
-  orderText+=`*Pago:* ${payment==="delivery"?"Pagar al Entregar":"Transferencia Bancentro"}%0A`;
-  if(payment==="bancentro") orderText+=`*Ref:* ${paymentRef}%0A`;
-  orderText+=`%0A*Pedido:*%0A`;
-  let total=deliveryCost;
-  let anySelected=false;
-  products.forEach(p=>{
-    const qty=parseInt(p.querySelector('input').value);
-    if(qty>0){ anySelected=true;
-      const name=p.dataset.name;
-      const price=parseInt(p.dataset.price);
-      orderText+=`• ${name} x${qty} = C$${price*qty}%0A`;
-      total+=price*qty;
-    }
-  });
-  if(!anySelected){ alert("Selecciona al menos un producto."); return; }
-  orderText+=`%0A*Entrega:* ${deliverySelect.options[deliverySelect.selectedIndex].text}%0A*Total:* C$${total}`;
-  window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
+document.getElementById('orderBtn').addEventListener('click', ()=>{
+    const clientName=document.getElementById('clientName').value.trim();
+    const clientAddress=document.getElementById('clientAddress').value.trim();
+    const payment=document.getElementById('paymentMethod').value;
+    const paymentRef=document.getElementById('paymentRef').value.trim();
+
+    if(clientName===""||clientAddress===""){ alert("Por favor ingresa tu nombre y dirección."); return; }
+    if(payment==="bancentro" && paymentRef===""){ alert("Por favor ingresa el número de referencia del pago."); return; }
+
+    const deliverySelect=document.getElementById('deliverySelect');
+    const deliveryCost=parseInt(deliverySelect.value);
+
+    const products=document.querySelectorAll('.product-card');
+    let orderText=`*Nuevo Pedido*%0A%0A*Nombre:* ${clientName}%0A*Dirección:* ${clientAddress}%0A`;
+    orderText += `*Pago:* ${payment==="delivery" ? "Pagar al Entregar" : "Transferencia Bancentro"}%0A`;
+    if(payment==="bancentro") orderText+=`*Ref:* ${paymentRef}%0A`;
+    orderText+=`%0A*Pedido:*%0A`;
+
+    let total=deliveryCost;
+    let anySelected=false;
+    products.forEach(p=>{
+        const qty=parseInt(p.querySelector('input').value);
+        if(qty>0){ anySelected=true;
+            const name=p.dataset.name;
+            const price=parseInt(p.dataset.price);
+            orderText+=`• ${name} x${qty} = C$${price*qty}%0A`;
+            total+=price*qty;
+        }
+    });
+    if(!anySelected){ alert("Selecciona al menos un producto."); return; }
+
+    orderText+=`%0A*Entrega:* ${deliverySelect.options[deliverySelect.selectedIndex].text}%0A*Total:* C$${total}`;
+    window.open(`https://wa.me/50585065976?text=${orderText}`,'_blank');
 });
 </script>
 
